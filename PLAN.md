@@ -129,45 +129,47 @@ flowchart TD
 
 ---
 
-### 📍 Giai đoạn 3: Download Design từ Stitch & Trích xuất Asset
+### 📍 Giai đoạn 3: Download Design từ Stitch & Trích xuất Asset — [ĐÃ HOÀN THÀNH ✅]
 > **Mục tiêu:** Tải mã nguồn thiết kế (HTML/CSS) từ Google Stitch về dự án, phân tích bảng mã màu, font chữ và xuất tài liệu `DESIGN.md`.
 
-- [ ] Tải về các file HTML/CSS được sinh từ Stitch.
-- [ ] Sử dụng skill trích xuất Design System (`stitch-extract-design-md`) để tổng hợp các tokens:
-  - Bảng màu (Color Palette: Primary, Glass tint, Accent amber/cyan).
-  - Định nghĩa độ mờ kính (`backdrop-blur-md`, `bg-white/10`, `border-white/20`).
-  - Font typography và kích thước (Display fonts cho Pomodoro, Body fonts cho Todo).
-- [ ] Chuẩn bị kho file âm thanh miễn phí bản quyền (Royalty-free) đặt vào thư mục `public/sounds/`:
-  - Rain, Campfire, Forest Wind, Waves, Coffee Shop, Mechanical Keyboard, Chime sound.
-- [ ] Chuẩn bị bộ ảnh nền mẫu chất lượng cao (WebP) đặt vào thư mục `public/wallpapers/`.
+- [x] Tải về toàn bộ 6 file HTML và PNG screenshot được sinh từ Stitch lưu vào [`.stitch/designs/`](file:///d:/Project/VibeSpace/.stitch/designs/).
+- [x] Trích xuất Design System và xây dựng tài liệu đặc tả chuẩn [`DESIGN.md`](file:///d:/Project/VibeSpace/DESIGN.md):
+  - Bảng màu semantic: Base `#0c1512`, Amber `#f59e0b`/`#ffc174`, Cyan `#4edea3`/`#00a572`.
+  - Quy chuẩn Frosted Glassmorphism: `backdrop-blur-md` đến `backdrop-blur-2xl`, viền `border-white/10` kèm specular highlight.
+  - Hệ thống Typography: `Plus Jakarta Sans` (Display timer, Headlines) và `Inter` (Body, Tabular digits).
+- [x] Tích hợp engine tổng hợp âm thanh Web Audio API (100% royalty-free, không phụ thuộc mạng, không trùng lặp) tại [`src/utils/audioSynth.ts`](file:///d:/Project/VibeSpace/src/utils/audioSynth.ts) hỗ trợ:
+  - Rain, Thunder, Campfire, Forest Wind, Ocean Waves, Coffee Shop, Mechanical Keyboard, Stream, Birds, Pink Noise, và chuông chime thiền định (528Hz Solfeggio).
+- [x] Chuẩn bị kho hình nền chất lượng cao 4K/WebP đa chủ đề (Misty Forest, Ocean, Snowy Mountains, Galaxy, Cozy Rain, Minimal Gradients) tại [`src/stores/useWallpaperStore.ts`](file:///d:/Project/VibeSpace/src/stores/useWallpaperStore.ts).
 
 ---
 
-### 📍 Giai đoạn 4: Code — Chuyển đổi Design sang React Component
+### 📍 Giai đoạn 4: Code — Chuyển đổi Design sang React Component — [ĐÃ HOÀN THÀNH ✅]
 > **Mục tiêu:** Khởi tạo dự án React + Vite, chuyển đổi mã nguồn Stitch thành các React components module hóa và gắn kết logic Zustand store.
 
 #### Sprint 4.1: Khởi tạo dự án & Cấu hình nền tảng
-- [ ] Khởi tạo project React + TypeScript với Vite: `npm create vite@latest . -- --template react-ts`.
-- [ ] Cài đặt các thư viện phụ thuộc:
-  - UI & Icons: `tailwindcss`, `postcss`, `autoprefixer`, `lucide-react`, `clsx`, `tailwind-merge`, `framer-motion`.
-  - State & Audio: `zustand`, `howler` (hoặc custom Web Audio hook), `react-youtube`.
-- [ ] Cấu hình Tailwind CSS với các token lấy từ Stitch.
+- [x] Khởi tạo project React + TypeScript + Vite (`package.json`, `tsconfig.json`, `vite.config.ts`).
+- [x] Cài đặt các thư viện: `tailwindcss`, `postcss`, `autoprefixer`, `lucide-react`, `clsx`, `tailwind-merge`, `framer-motion`, `zustand`, `canvas-confetti`.
+- [x] Cấu hình Tailwind CSS [`tailwind.config.js`](file:///d:/Project/VibeSpace/tailwind.config.js) và stylesheet [`src/index.css`](file:///d:/Project/VibeSpace/src/index.css) với tokens từ Stitch `DESIGN.md`.
 
 #### Sprint 4.2: Chuyển đổi & Xây dựng các UI Components (Dựa trên Stitch Design)
-- [ ] `WallpaperViewer.tsx` & `DimmerOverlay.tsx`: Render nền động và lớp phủ làm mờ/tối.
-- [ ] `PomodoroClock.tsx`: Chuyển đổi thiết kế đồng hồ trung tâm, hiển thị thời gian, nút Play/Pause/Reset.
-- [ ] `SoundboardDrawer.tsx` & `SoundTrackItem.tsx`: Lưới mixer âm thanh với slider volume.
-- [ ] `YoutubePlayer.tsx`: Trình phát lofi nhúng IFrame YouTube, hỗ trợ paste URL và chỉnh volume.
-- [ ] `TodoDrawer.tsx` & `TodoItem.tsx`: Danh sách công việc với hiệu ứng hoàn thành.
-- [ ] `QuickDock.tsx`: Thanh điều hướng nổi dưới đáy màn hình để bật/tắt các drawer.
+- [x] [`WallpaperViewer.tsx`](file:///d:/Project/VibeSpace/src/components/WallpaperViewer.tsx): Render nền động, lớp phủ làm mờ (Blur) và độ tối (Dimmer).
+- [x] [`PomodoroClock.tsx`](file:///d:/Project/VibeSpace/src/components/PomodoroClock.tsx): Đồng hồ trung tâm với concentric SVG progress ring, số to, các nút Play/Pause/Skip/Reset, và title bar sync.
+- [x] [`SoundboardDrawer.tsx`](file:///d:/Project/VibeSpace/src/components/SoundboardDrawer.tsx): Ngăn kéo mixer âm thanh trượt từ phải với 10 card âm thanh, volume slider riêng, master volume, và 5 sound presets.
+- [x] [`YoutubePlayer.tsx`](file:///d:/Project/VibeSpace/src/components/YoutubePlayer.tsx): Trình phát lofi nhúng IFrame YouTube, phân tích bóc tách URL dán vào, visualizer sóng nhạc động và các kênh nổi tiếng (Lofi Girl, Chillhop, Synthwave...).
+- [x] [`TodoDrawer.tsx`](file:///d:/Project/VibeSpace/src/components/TodoDrawer.tsx): Danh sách việc cần làm theo ngày với thanh tiến độ hoàn thành, ô nhập nhanh, checkbox mượt mà, và badge Daily Routine.
+- [x] [`WallpaperModal.tsx`](file:///d:/Project/VibeSpace/src/components/WallpaperModal.tsx): Modal chọn kho hình nền thư giãn với tabs phân loại, lưới xem trước, slider Dimmer/Blur và nút Shuffle.
+- [x] [`ZenModeView.tsx`](file:///d:/Project/VibeSpace/src/components/ZenModeView.tsx): Chế độ tập trung tối thượng toàn màn hình, hiển thị đồng hồ số siêu mảnh 180px, vạch tiến độ mờ ở đáy màn hình và gợi ý phím tắt.
+- [x] [`QuickDock.tsx`](file:///d:/Project/VibeSpace/src/components/QuickDock.tsx): Thanh dock kính mờ nổi dưới đáy màn hình tích hợp 5 phím điều hướng và badge số task chưa xong.
+- [x] [`Header.tsx`](file:///d:/Project/VibeSpace/src/components/Header.tsx): Thanh header mờ với logo VibeSpace, đồng hồ thời gian thực (Live Clock), thanh volume nhanh và nút fullscreen.
 
 #### Sprint 4.3: Tích hợp Business Logic & State Stores (Zustand)
-- [ ] Cài đặt `usePomodoroStore`: Logic đếm ngược chính xác, chuyển phiên (Focus -> Break), phát âm thanh chime khi hết giờ.
-- [ ] Cài đặt `useMixerStore`: Logic phát đa luồng âm thanh lặp (looping), volume riêng lẻ, master volume, lưu cấu hình vào `localStorage`.
-- [ ] Cài đặt `useYoutubeStore`: Tích hợp YouTube Player API, tự động tải stream mặc định, hỗ trợ đổi video ID từ link dán vào.
-- [ ] Cài đặt `useTodoStore`: Quản lý thêm/xóa/sửa task, gắn nhãn task hàng ngày, lưu trữ `localStorage`.
-- [ ] Cài đặt hook `useDailyReset`: Thuật toán tự động reset task khi chuyển sang ngày mới (0h00 hoặc khi mở lại trình duyệt).
-- [ ] Cài đặt Zen Mode toggle & Phím tắt tiện ích (`Z` cho Zen Mode, `Space` cho Play/Pause timer, `F` cho Fullscreen).
+- [x] [`usePomodoroStore.ts`](file:///d:/Project/VibeSpace/src/stores/usePomodoroStore.ts): Đếm ngược chính xác, chuyển phiên (Focus -> Break), lưu session hoàn thành, bắn confetti và phát chuông chime khi hết giờ.
+- [x] [`useMixerStore.ts`](file:///d:/Project/VibeSpace/src/stores/useMixerStore.ts): Quản lý đa luồng âm thanh qua Web Audio API, volume riêng lẻ, master volume, và lưu vào `localStorage`.
+- [x] [`useYoutubeStore.ts`](file:///d:/Project/VibeSpace/src/stores/useYoutubeStore.ts): Tích hợp luồng YouTube, bóc tách ID từ link dán vào, chuyển đổi kênh mượt mà.
+- [x] [`useTodoStore.ts`](file:///d:/Project/VibeSpace/src/stores/useTodoStore.ts): Quản lý thêm/xóa/sửa task, gắn nhãn Daily Routine, lưu trữ `localStorage`.
+- [x] [`useDailyReset.ts`](file:///d:/Project/VibeSpace/src/hooks/useDailyReset.ts): Thuật toán tự động reset task khi chuyển sang ngày mới (0h00 hoặc khi mở lại trình duyệt).
+- [x] [`useKeyboardShortcuts.ts`](file:///d:/Project/VibeSpace/src/hooks/useKeyboardShortcuts.ts): Phím tắt toàn cục (`Space` cho Play/Pause, `Z` cho Zen Mode, `F` cho Fullscreen, `ESC` để đóng drawer/thoát Zen Mode).
+- [x] Kiểm tra biên dịch TypeScript và build bundle tối ưu qua Vite (`npm run build` thành công 100% trong 7.7s).
 
 ---
 
