@@ -30,28 +30,105 @@ flowchart TD
 ---
 
 ### 📍 Giai đoạn 2: Design with Google Stitch (UI/UX Generation)
-> **Mục tiêu:** Sử dụng Google Stitch để thiết kế toàn bộ các trạng thái giao diện của VibeSpace theo phong cách Frosted Glassmorphism, tối giản và thẩm mỹ.
+> **Mục tiêu:** Sử dụng Google Stitch để thiết kế toàn bộ các trạng thái giao diện và components của VibeSpace theo phong cách Frosted Glassmorphism, tối giản, sang trọng và chuẩn công thái học thị giác.
 
-#### Các màn hình / Components cần thiết kế trên Stitch:
-1. **Screen 1: Main Workspace (Màn hình chính mặc định):**
-   - Hình nền thiên nhiên (Rừng thông sương mù / Hoàng hôn biển).
-   - Khối đồng hồ Pomodoro trung tâm với font số to, circular progress ring mờ tinh xảo.
-   - Thanh dock nổi bên dưới (Quick Dock) chứa các icon: Lofi Player, Soundboard Mixer, Todo List, Background Picker, Fullscreen/Zen Mode.
-   - Thanh Header mờ góc trên: Logo VibeSpace, thời gian thực và nút cài đặt nhanh.
-2. **Screen 2: Ambient Soundboard Drawer (Ngăn kéo Mixer âm thanh):**
-   - Bảng điều khiển kính mờ trượt từ cạnh phải hoặc popup trung tâm.
-   - Lưới 8-10 nút icon âm thanh (Mưa, Sấm, Gió, Lửa, Sóng biển, Phím gõ...) với thanh trượt volume riêng.
-   - Master volume slider và hàng nút chọn Sound Presets (Rainy Night, Coffee Break...).
-3. **Screen 3: Lofi Music Mini-Player (Trình phát nhạc Lofi):**
-   - Khung điều khiển nhỏ gọn: Trạng thái bài hát, sóng nhạc lofi, thanh gõ URL YouTube và volume.
-4. **Screen 4: Daily Todo List Drawer (Danh sách việc cần làm theo ngày):**
-   - Panel danh sách công việc, thanh tiến độ (Progress bar).
-   - Checkbox thẩm mỹ, nút thêm nhanh task, tag đánh dấu "Daily Routine".
-5. **Screen 5: Background Selector Modal (Kho hình nền):**
-   - Lưới chọn hình nền với các tab chủ đề: Rừng, Biển, Núi, Trời sao, Tối giản.
-   - Thanh trượt chỉnh độ tối (Dimmer) và độ mờ (Blur) của nền.
-6. **Screen 6: Zen Mode View (Chế độ tập trung tối thượng):**
-   - Mọi thanh công cụ được ẩn hoàn toàn, chỉ giữ lại Pomodoro mờ nhẹ và background.
+---
+
+#### 🔹 Task 2.1: Xây dựng Design System Tokens & Master Prompt Specification
+- [ ] **Mô tả:** Thiết lập bộ Design Tokens chuẩn và soạn thảo khung Master Prompt cho Google Stitch dựa trên phong cách Frosted Glassmorphism (`backdrop-blur`, `bg-white/10`, viền `border-white/15`, màu nhấn Amber/Cyan, font Display thanh lịch).
+- [ ] **Chi tiết thực hiện:**
+  - Định nghĩa bảng màu (Dark nature theme: Slate 900 base, Frosted glass tint, Accent gold/amber cho Pomodoro focus, Cyan cho break).
+  - Thiết lập quy tắc micro-motion và typography (Inter/Plus Jakarta Sans cho UI, JetBrains Mono hoặc Playfair/Space Grotesk cho số đồng hồ).
+  - Soạn thảo tài liệu hướng dẫn prompt chuẩn (`STITCH_PROMPTS.md`) để áp dụng nhất quán cho các tác vụ tiếp theo.
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Có bộ prompt mẫu chuẩn hóa, mô tả chi tiết ngôn ngữ thị giác, sẵn sàng copy/sử dụng vào Google Stitch.
+
+---
+
+#### 🔹 Task 2.2: Thiết kế Screen 1 — Main Workspace & Floating Quick Dock
+- [ ] **Mô tả:** Tạo màn hình làm việc chính (Default State) với không gian tĩnh lặng, cân bằng thị giác giữa nền thiên nhiên, đồng hồ trung tâm và thanh điều hướng nổi.
+- [ ] **Chi tiết thành phần thiết kế:**
+  - **Header:** Logo VibeSpace góc trái, đồng hồ thời gian thực (Live Clock) và nút cài đặt nhanh ở góc phải.
+  - **Centerpiece Pomodoro:** Khối số đếm ngược cỡ lớn, vòng tiến độ tròn mờ (Circular Progress Ring), tag trạng thái (Focus / Short Break / Long Break), và các nút điều khiển nhỏ gọn (Play/Pause, Skip, Reset).
+  - **Floating Quick Dock (Đáy màn hình):** Thanh dock kính mờ hình viên thuốc (pill shape) chứa 5 nút chức năng: Lofi Player, Ambient Soundboard, Daily Todo, Wallpaper Picker, Fullscreen/Zen Mode (có tooltip và active indicator).
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Layout trung tâm cân đối, số hiển thị rõ ràng trên mọi hình nền thiên nhiên (rừng mờ, biển đêm).
+  - Quick Dock nổi tinh tế, không che khuất nội dung chính.
+
+---
+
+#### 🔹 Task 2.3: Thiết kế Screen 2 — Ambient Soundboard Drawer (Mixer âm thanh)
+- [ ] **Mô tả:** Tạo bảng điều khiển mixer hòa âm tiếng ồn trắng dạng drawer trượt từ cạnh phải (hoặc modal kính mờ).
+- [ ] **Chi tiết thành phần thiết kế:**
+  - **Thanh Master Controls:** Thanh trượt âm lượng tổng (Master Volume), nút Quick Mute toàn bộ.
+  - **Lưới Sound Cards (8–10 tracks):** Tiếng mưa (Rain), Sấm sét (Thunder), Lửa trại (Campfire), Gió rừng (Forest Wind), Sóng biển (Waves), Quán cà phê (Coffee Shop), Bàn phím cơ (Keyboard), Suối reo (Stream), Chim rừng (Birds), Tiếng ồn trắng (White Noise).
+  - **Mỗi Sound Item:** Icon đại diện sắc nét, tên âm thanh, nút bật/tắt (Toggle) và thanh trượt âm lượng riêng biệt.
+  - **Sound Presets Bar:** Hàng nút chọn nhanh các combo phối sẵn (ví dụ: *Đêm mưa trên núi*, *Quán quen chiều thu*, *Ven biển hoàng hôn*).
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Trạng thái Active/Inactive của từng âm thanh có sự phân biệt thị giác rõ rệt (sáng viền / glow nhẹ).
+  - Bảng mixer cuộn mượt mà, thanh trượt volume kéo thả trực quan.
+
+---
+
+#### 🔹 Task 2.4: Thiết kế Screen 3 — Lofi Music Mini-Player (Trình phát nhạc YouTube)
+- [ ] **Mô tả:** Tạo widget mini-player phát nhạc Lofi YouTube nhỏ gọn đặt ở góc màn hình hoặc popup nổi từ Quick Dock.
+- [ ] **Chi tiết thành phần thiết kế:**
+  - **Track Info Card:** Thumbnail video thu nhỏ, tên bài hát/livestream, visualizer sóng nhạc động giả lập.
+  - **Custom Source Input:** Ô nhập/dán URL YouTube kèm nút "Play" và thanh gợi ý kênh nhạc Lofi thịnh hành (Lofi Girl, ChillHop, Synthwave, Jazz Coffee).
+  - **Controls:** Play/Pause, Next track, Slider volume độc lập, nút Quick Mute.
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Widget gọn gàng, kích thước tối ưu, không làm rối không gian làm việc chính.
+  - Hiển thị rõ ràng trạng thái đang phát (Playing) với hiệu ứng sóng âm (Wave animation).
+
+---
+
+#### 🔹 Task 2.5: Thiết kế Screen 4 — Daily Reset Todo List Drawer (Danh sách việc cần làm)
+- [ ] **Mô tả:** Tạo bảng quản lý công việc hàng ngày dạng drawer trượt từ cạnh trái (hoặc popup nổi) với cơ chế tự làm mới mỗi ngày.
+- [ ] **Chi tiết thành phần thiết kế:**
+  - **Header & Progress:** Tiêu đề "Hôm nay", vòng hoặc thanh tiến độ hoàn thành (ví dụ: 3/5 task, 60%).
+  - **Quick Add Input:** Ô nhập việc nhanh `+ Thêm công việc cần làm hôm nay... [Enter]`.
+  - **Task List Items:** Checkbox tròn mờ tinh xảo, text gạch ngang mờ khi xong, badge tag "Daily Routine" (cho task lặp lại mỗi ngày), nút xóa task.
+  - **Footer Notice:** Dòng text mờ chú thích: *"Danh sách sẽ tự động làm mới vào 00:00 hàng ngày"*.
+  - **Empty State:** Minh họa nhẹ nhàng khi chưa có việc nào trong ngày.
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Checkbox và hiệu ứng hoàn thành task trực quan, thỏa mãn cảm giác hoàn thành (satisfying check effect).
+  - Danh sách cuộn độc lập, không bị tràn màn hình khi có nhiều task.
+
+---
+
+#### 🔹 Task 2.6: Thiết kế Screen 5 — Wallpaper Selector Modal & Visual Dimmer
+- [ ] **Mô tả:** Tạo popup modal duyệt kho hình nền thư giãn kèm bộ tinh chỉnh độ mờ (Blur) và độ tối (Dimmer).
+- [ ] **Chi tiết thành phần thiết kế:**
+  - **Category Tabs:** Rừng thông (Forest), Đại dương (Ocean), Núi tuyết (Mountains), Vũ trụ (Galaxy), Ấm cúng (Cozy Room), Tối giản (Minimal Gradients).
+  - **Wallpaper Grid:** Lưới thumbnails tỷ lệ 16:9 chất lượng cao, có viền sáng (Active ring) đánh dấu hình nền đang được chọn.
+  - **Visual Tuning Controls:**
+    - Slider điều chỉnh độ tối màn hình (Overlay Dimmer: 0% – 80%).
+    - Slider làm mờ hình nền (Background Blur: 0 – 20px).
+    - Nút "Đổi ngẫu nhiên" (Shuffle Wallpaper).
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Thao tác xem trước (Preview) nhanh chóng, người dùng dễ dàng cảm nhận hiệu ứng mờ/tối qua thanh trượt.
+
+---
+
+#### 🔹 Task 2.7: Thiết kế Screen 6 — Zen Mode View & Responsive States
+- [ ] **Mô tả:** Tạo thiết kế cho chế độ tập trung cực đại (Zen Mode) và các trạng thái thích ứng màn hình khác nhau.
+- [ ] **Chi tiết thành phần thiết kế:**
+  - **Zen Mode Layout:** Tự động ẩn hoàn toàn Header, Quick Dock, Todo và Drawer; chỉ giữ lại đồng hồ Pomodoro siêu tối giản và hình nền chuyển động nhẹ.
+  - **Gợi ý thoát chế độ:** Tooltip hoặc text mờ góc dưới: *"Nhấn phím [ESC] hoặc [Z] để thoát chế độ Zen"*.
+  - **Responsive Breakpoints:** Thiết kế tương thích cho Desktop chuẩn (1920×1080), Màn hình nhỏ / Laptop (1366×768), và Tablet ngang.
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Mang lại cảm giác thanh tĩnh, loại bỏ 100% các yếu tố gây xao nhãng.
+  - Bố cục responsive không bị vỡ layout trên laptop 13-14 inch.
+
+---
+
+#### 🔹 Task 2.8: Tổng hợp, Kiểm tra tính nhất quán & Đóng gói Design System
+- [ ] **Mô tả:** Rà soát lại toàn bộ 6 màn hình / components đã tạo trên Google Stitch để đảm bảo tính đồng bộ hoàn hảo trước khi tải mã nguồn.
+- [ ] **Chi tiết thực hiện:**
+  - Kiểm tra độ nhất quán: Cùng kích thước bo góc (`rounded-2xl` / `rounded-3xl`), cùng thông số lớp phủ kính (`backdrop-blur-md`, viền `border-white/10`), cùng hệ font chữ và icon style.
+  - Tổng hợp danh sách URL và mã nguồn HTML/CSS của các màn hình đã được duyệt trên Stitch.
+- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Toàn bộ 6 màn hình đạt tiêu chuẩn thẩm mỹ, thống nhất phong cách Frosted Glassmorphism, sẵn sàng chuyển sang Giai đoạn 3 (Download & Asset Extraction).
 
 ---
 
