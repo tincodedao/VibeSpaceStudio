@@ -11,7 +11,8 @@ flowchart TD
     P1[Giai đoạn 1: PLANNING<br>Đặc tả & Thiết kế kỹ thuật] --> P2[Giai đoạn 2: DESIGN WITH GOOGLE STITCH<br>Prompting & Tạo màn hình UI]
     P2 --> P3[Giai đoạn 3: DOWNLOAD & ASSET EXTRACTION<br>Xuất mã HTML/CSS & Design Tokens]
     P3 --> P4[Giai đoạn 4: CODE & INTEGRATION<br>Chuyển đổi React Component & Ghép Logic]
-    P4 --> P5[Giai đoạn 5: TESTING & DEPLOYMENT<br>Kiểm thử âm thanh & Triển khai Web]
+    P4 --> P5[Giai đoạn 5: TESTING & LOCAL VERIFICATION<br>Kiểm thử âm thanh & Monorepo Setup]
+    P5 --> P6[Giai đoạn 6: BACKEND & CLOUD DEPLOYMENT<br>Express, Supabase DB & Render Deployment]
 ```
 
 ---
@@ -176,11 +177,63 @@ flowchart TD
 ### 📍 Giai đoạn 5: Testing, Hoàn thiện & Triển khai (QA & Launch)
 > **Mục tiêu:** Kiểm thử toàn diện trên nhiều trình duyệt, tối ưu hiệu năng và đóng gói ứng dụng.
 
+- [x] Build sản phẩm `npm run build` và tái cấu trúc sang Monorepo (`apps/frontend` và `apps/backend`).
 - [ ] Kiểm thử chính sách Autoplay của trình duyệt (Browser Autoplay Policy).
 - [ ] Kiểm thử cơ chế Daily Reset Todo bằng cách thay đổi ngày giờ hệ thống.
 - [ ] Kiểm thử hiệu năng khi mở tab nền trong thời gian dài (Memory leak & CPU test).
 - [ ] Kiểm thử hiển thị trên các kích thước màn hình Desktop/Laptop/Tablet.
-- [ ] Build sản phẩm `npm run build` và hướng dẫn deploy lên Vercel / Netlify / GitHub Pages.
+
+---
+
+### 📍 Giai đoạn 6: Backend Service (Express.js), PostgreSQL (Supabase) & Cloud Deployment (Render)
+> **Mục tiêu:** Xây dựng hệ thống Backend hoàn chỉnh phục vụ xác thực người dùng (Auth), đồng bộ hóa dữ liệu đám mây (Cloud Sync) cho nhạc YouTube, hình nền Wallpaper, danh sách Todo; triển khai Database trên Supabase và Web Service trên Render thông qua cấu hình MCP.
+
+#### Sprint 6.1: Database Schema & Migration trên Supabase (PostgreSQL)
+- [ ] Thiết kế và khởi tạo các bảng dữ liệu bằng Supabase MCP / SQL Client:
+  - `user_profiles`: Thông tin tài khoản người dùng (`id` tham chiếu `auth.users`, `display_name`, `avatar_url`, `created_at`).
+  - `user_youtube_tracks`: Danh sách bài hát người dùng thêm vào (`id`, `user_id`, `youtube_id`, `title`, `channel`, `is_custom`, `created_at`).
+  - `user_wallpapers`: Danh sách hình nền URL người dùng thêm vào (`id`, `user_id`, `title`, `url`, `type` ['image' | 'video'], `created_at`).
+  - `user_todos`: Danh sách công việc (`id`, `user_id`, `text`, `completed`, `is_routine`, `created_at`, `updated_at`).
+- [ ] Cấu hình Indexes (theo `user_id`) và Row-Level Security (RLS) policies đảm bảo người dùng chỉ truy cập được dữ liệu của chính mình.
+- [ ] Thiết lập trigger tự động khởi tạo bản ghi trong `user_profiles` khi user đăng ký tài khoản qua Supabase Auth.
+
+#### Sprint 6.2: Xây dựng REST API Backend với Express.js (`apps/backend`)
+- [ ] Cài đặt các gói phụ thuộc: `express`, `cors`, `dotenv`, `pg`, `zod`, `@supabase/supabase-js`, `helmet`, `morgan`.
+- [ ] Xây dựng tầng middleware:
+  - `authMiddleware.ts`: Kiểm tra và giải mã Supabase Auth Bearer JWT token từ header request.
+  - `validateMiddleware.ts`: Validate dữ liệu request body bằng Zod schema.
+  - `cors` và `errorHandler.ts`.
+- [ ] Xây dựng Database Pooler Client (`apps/backend/src/db/index.ts`): Kết nối Supabase PostgreSQL Connection Pooler (hỗ trợ SSL).
+- [ ] Triển khai các API Controllers & Routes:
+  - `GET /api/v1/auth/me`: Lấy thông tin user hiện tại.
+  - `POST /api/v1/sync`: Batch merge dữ liệu từ local guest lên server khi vừa đăng nhập.
+  - `GET`, `POST`, `DELETE /api/v1/tracks`: Quản lý danh sách YouTube tracks của user.
+  - `GET`, `POST`, `DELETE /api/v1/wallpapers`: Quản lý danh sách URL hình nền của user.
+  - `GET`, `POST`, `PUT`, `DELETE /api/v1/todos`: Quản lý danh sách công việc của user.
+- [ ] Viết script kiểm thử tích hợp (Integration Test) cho các endpoints backend.
+
+#### Sprint 6.3: Tích hợp Giao diện Auth & Cloud Sync trên Frontend (`apps/frontend`)
+- [ ] Tạo `AuthModal.tsx`: Giao diện modal Frosted Glassmorphism với hai tab Đăng nhập / Đăng ký qua Supabase Auth SDK.
+- [ ] Cập nhật `Header.tsx`: Thêm nút Avatar / "Sign In" ở góc trên cùng bên phải. Khi đã đăng nhập hiển thị tên/avatar kèm dropdown "Đồng bộ" & "Đăng xuất".
+- [ ] Xây dựng `useAuthStore.ts` (Zustand): Quản lý phiên đăng nhập, access token, thông tin người dùng và lắng nghe sự kiện `onAuthStateChange`.
+- [ ] Nâng cấp chiến lược Local-First kết hợp Cloud Sync:
+  - Khi người dùng đăng nhập: Tự động gom các custom tracks, custom wallpapers, active todos từ `localStorage` gọi API `/api/v1/sync` để đồng bộ lên Supabase Database.
+  - Đồng bộ hai chiều mượt mà: Các thao tác thêm/xóa trên `useYoutubeStore`, `useWallpaperStore`, `useTodoStore` vẫn cập nhật tức thì trên UI (Optimistic UI) đồng thời đồng bộ về Express backend.
+
+#### Sprint 6.4: Triển khai Cloud Deployment qua MCP (Supabase + Render)
+- [ ] Chạy migration khởi tạo bảng trên Supabase Database thông qua Supabase MCP tool (`execute_sql`).
+- [ ] Khởi tạo Render Web Service thông qua Render MCP tool (`create_web_service`):
+  - Repository: `https://github.com/tincodedao/VibeSpaceStudio`
+  - Build Command: `npm install && npm run build:backend`
+  - Start Command: `npm run start:backend`
+  - Branch: `main`
+- [ ] Cấu hình biến môi trường trên Render qua MCP: `PORT`, `DATABASE_URL`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `CORS_ORIGIN`.
+- [ ] Kiểm thử End-to-End toàn diện:
+  - Đăng ký tài khoản mới trên giao diện VibeSpace.
+  - Thêm 1 video YouTube yêu thích -> Kiểm tra lưu thành công trong PostgreSQL.
+  - Thêm 1 ảnh nền URL -> Kiểm tra render và lưu thành công.
+  - Thêm 2 todos -> Hoàn thành 1 todo -> Kiểm tra cập nhật state trong database.
+  - Đăng xuất -> Đăng nhập lại trên một phiên trình duyệt mới -> Xác nhận dữ liệu tự động tải về đầy đủ.
 
 ---
 
