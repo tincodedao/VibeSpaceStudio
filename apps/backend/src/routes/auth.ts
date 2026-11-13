@@ -25,3 +25,4 @@ authRouter.get('/me', requireAuth, async (req: AuthenticatedRequest, res: Respon
     res.status(500).json({ error: error.message });
   }
 });
+

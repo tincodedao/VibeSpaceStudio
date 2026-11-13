@@ -38,6 +38,8 @@ export const YoutubePlayer: React.FC = () => {
     }
   };
 
+  const safeCustomTracks = customTracks || [];
+
   return (
     <>
       {/* Hidden/Persistent YouTube IFrame (keeps playing when widget is minimized) */}
@@ -182,7 +184,7 @@ export const YoutubePlayer: React.FC = () => {
           </div>
 
           {/* Saved Custom Tracks */}
-          {customTracks.length > 0 && (
+          {safeCustomTracks.length > 0 && (
             <div>
               <div className="text-[11px] text-on-surface-variant font-medium mb-1.5 flex items-center gap-1.5">
                 <Music size={12} className="text-amber-400" />

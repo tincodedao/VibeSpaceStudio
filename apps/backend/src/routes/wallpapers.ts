@@ -76,3 +76,4 @@ wallpapersRouter.delete('/:id', requireAuth, async (req: AuthenticatedRequest, r
     res.status(500).json({ error: err.message });
   }
 });
+

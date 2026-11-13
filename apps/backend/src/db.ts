@@ -29,3 +29,4 @@ export const pool = config.databaseUrl
       ssl: { rejectUnauthorized: false }
     })
   : null;
+

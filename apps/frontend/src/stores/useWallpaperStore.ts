@@ -174,6 +174,14 @@ export const useWallpaperStore = create<WallpaperState>()(
     }),
     {
       name: 'vibespace-wallpaper-storage',
+      merge: (persistedState: any, currentState) => ({
+        ...currentState,
+        ...persistedState,
+        currentWallpaper: persistedState?.currentWallpaper || CURATED_WALLPAPERS[0],
+        customWallpapers: Array.isArray(persistedState?.customWallpapers) ? persistedState.customWallpapers : [],
+        dimmerOpacity: typeof persistedState?.dimmerOpacity === 'number' ? persistedState.dimmerOpacity : 0.35,
+        blurRadius: typeof persistedState?.blurRadius === 'number' ? persistedState.blurRadius : 0
+      }),
       partialize: (s) => ({
         currentWallpaper: s.currentWallpaper,
         customWallpapers: s.customWallpapers,

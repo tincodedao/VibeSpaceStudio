@@ -181,3 +181,4 @@ export const AuthModal: React.FC = () => {
     </AnimatePresence>
   );
 };
+

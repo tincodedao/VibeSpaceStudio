@@ -91,3 +91,4 @@ syncRouter.post('/', requireAuth, async (req: AuthenticatedRequest, res: Respons
     res.status(500).json({ error: err.message });
   }
 });
+

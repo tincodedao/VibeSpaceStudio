@@ -41,3 +41,4 @@ export async function requireAuth(
     res.status(500).json({ error: 'Internal auth verification error', details: err.message });
   }
 }
+

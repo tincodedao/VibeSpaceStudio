@@ -27,9 +27,11 @@ export const WallpaperModal: React.FC = () => {
 
   if (!isOpen) return null;
 
+  const safeCustomWallpapers = customWallpapers || [];
+
   const categories = [
     { id: 'all', label: 'All Vibe' },
-    { id: 'custom', label: `My Wallpapers (${customWallpapers.length})` },
+    { id: 'custom', label: `My Wallpapers (${safeCustomWallpapers.length})` },
     { id: 'forest', label: 'Forest 🌲' },
     { id: 'ocean', label: 'Ocean 🌊' },
     { id: 'mountains', label: 'Mountains 🏔' },
@@ -48,7 +50,7 @@ export const WallpaperModal: React.FC = () => {
     setSelectedCategory('custom');
   };
 
-  const customItemsAsWallpaper = customWallpapers.map(cw => ({
+  const customItemsAsWallpaper = safeCustomWallpapers.map(cw => ({
     id: cw.id,
     title: cw.title,
     category: 'custom' as any,

@@ -195,6 +195,15 @@ export const useYoutubeStore = create<YoutubeState>()(
     }),
     {
       name: 'vibespace-youtube-store',
+      merge: (persistedState: any, currentState) => ({
+        ...currentState,
+        ...persistedState,
+        customTracks: Array.isArray(persistedState?.customTracks) ? persistedState.customTracks : [],
+        currentVideoId: persistedState?.currentVideoId || LOFI_CHANNELS[0].videoId,
+        currentTitle: persistedState?.currentTitle || LOFI_CHANNELS[0].desc,
+        volume: typeof persistedState?.volume === 'number' ? persistedState.volume : 75,
+        isMuted: !!persistedState?.isMuted
+      }),
       partialize: (s) => ({
         currentVideoId: s.currentVideoId,
         currentTitle: s.currentTitle,

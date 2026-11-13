@@ -76,3 +76,4 @@ tracksRouter.delete('/:id', requireAuth, async (req: AuthenticatedRequest, res: 
     res.status(500).json({ error: err.message });
   }
 });
+

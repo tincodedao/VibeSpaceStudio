@@ -167,6 +167,12 @@ export const useTodoStore = create<TodoState>()(
     }),
     {
       name: 'vibespace-todos-storage',
+      merge: (persistedState: any, currentState) => ({
+        ...currentState,
+        ...persistedState,
+        todos: Array.isArray(persistedState?.todos) ? persistedState.todos : INITIAL_TODOS,
+        lastActiveDate: persistedState?.lastActiveDate || getTodayDateString()
+      }),
       partialize: (s) => ({
         todos: s.todos,
         lastActiveDate: s.lastActiveDate
