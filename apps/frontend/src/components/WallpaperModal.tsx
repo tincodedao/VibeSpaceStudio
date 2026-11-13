@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { X, Shuffle, Check, Sliders, Sparkles } from 'lucide-react';
+import { X, Shuffle, Check, Sliders, Sparkles, Plus, Trash2, Image as ImageIcon } from 'lucide-react';
 import { useWallpaperStore, CURATED_WALLPAPERS } from '../stores/useWallpaperStore';
 import { useUIStore } from '../stores/useUIStore';
 
 export const WallpaperModal: React.FC = () => {
   const {
     currentWallpaper,
+    customWallpapers,
     dimmerOpacity,
     blurRadius,
     setWallpaper,
     setDimmerOpacity,
     setBlurRadius,
     shuffleWallpaper,
+    addCustomWallpaper,
+    removeCustomWallpaper
   } = useWallpaperStore();
 
   const { activeDrawer, closeDrawer } = useUIStore();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [customTitle, setCustomTitle] = useState('');
+  const [customUrl, setCustomUrl] = useState('');
 
   const isOpen = activeDrawer === 'wallpaper';
 
@@ -23,6 +29,7 @@ export const WallpaperModal: React.FC = () => {
 
   const categories = [
     { id: 'all', label: 'All Vibe' },
+    { id: 'custom', label: `My Wallpapers (${customWallpapers.length})` },
     { id: 'forest', label: 'Forest 🌲' },
     { id: 'ocean', label: 'Ocean 🌊' },
     { id: 'mountains', label: 'Mountains 🏔' },
@@ -31,9 +38,30 @@ export const WallpaperModal: React.FC = () => {
     { id: 'minimal', label: 'Minimal ✨' },
   ];
 
-  const filtered =
-    selectedCategory === 'all'
-      ? CURATED_WALLPAPERS
+  const handleAddSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!customUrl.trim()) return;
+    addCustomWallpaper(customTitle, customUrl);
+    setCustomTitle('');
+    setCustomUrl('');
+    setShowAddForm(false);
+    setSelectedCategory('custom');
+  };
+
+  const customItemsAsWallpaper = customWallpapers.map(cw => ({
+    id: cw.id,
+    title: cw.title,
+    category: 'custom' as any,
+    url: cw.url,
+    thumbnail: cw.url,
+    type: cw.type,
+    isCustom: true
+  }));
+
+  const filtered = selectedCategory === 'custom'
+    ? customItemsAsWallpaper
+    : selectedCategory === 'all'
+      ? [...customItemsAsWallpaper, ...CURATED_WALLPAPERS]
       : CURATED_WALLPAPERS.filter((w) => w.category === selectedCategory);
 
   return (
@@ -48,17 +76,68 @@ export const WallpaperModal: React.FC = () => {
                 Atmospheric Wallpapers
               </h2>
               <p className="text-xs text-on-surface-variant">
-                Select your ideal focus scenery & customize lighting
+                Chọn hình nền tĩnh lặng và chỉnh ánh sáng không gian
               </p>
             </div>
           </div>
-          <button
-            onClick={closeDrawer}
-            className="p-1.5 rounded-full hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowAddForm(!showAddForm)}
+              className="px-3 py-1.5 rounded-full bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 text-xs font-medium flex items-center gap-1.5 transition-colors border border-amber-400/30"
+            >
+              <Plus size={14} />
+              <span>Thêm URL</span>
+            </button>
+            <button
+              onClick={closeDrawer}
+              className="p-1.5 rounded-full hover:bg-white/10 text-on-surface-variant hover:text-on-surface transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
+
+        {/* Add Custom Wallpaper Form */}
+        {showAddForm && (
+          <form onSubmit={handleAddSubmit} className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+            <div className="flex items-center gap-2 text-xs font-semibold text-amber-400">
+              <ImageIcon size={15} />
+              <span>Thêm hình nền từ Direct Image Link (Unsplash, Imgur, Pexels...)</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input
+                type="text"
+                placeholder="Tên hình nền (VD: Cyberpunk Tokyo)"
+                value={customTitle}
+                onChange={(e) => setCustomTitle(e.target.value)}
+                className="px-3 py-2 text-xs rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-amber-400"
+              />
+              <input
+                type="url"
+                required
+                placeholder="URL hình ảnh (https://...)"
+                value={customUrl}
+                onChange={(e) => setCustomUrl(e.target.value)}
+                className="px-3 py-2 text-xs rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-amber-400"
+              />
+            </div>
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setShowAddForm(false)}
+                className="px-3 py-1.5 rounded-lg text-xs text-white/60 hover:text-white"
+              >
+                Hủy
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold text-xs transition-colors"
+              >
+                Lưu vào bộ sưu tập
+              </button>
+            </div>
+          </form>
+        )}
 
         {/* Category Tabs */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
@@ -79,7 +158,7 @@ export const WallpaperModal: React.FC = () => {
 
         {/* Wallpaper Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
-          {filtered.map((wallpaper) => {
+          {filtered.map((wallpaper: any) => {
             const isSelected = currentWallpaper.id === wallpaper.id;
             return (
               <div
@@ -96,10 +175,22 @@ export const WallpaperModal: React.FC = () => {
                   alt={wallpaper.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5">
-                  <span className="text-xs font-medium text-white truncate">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end justify-between p-2.5">
+                  <span className="text-xs font-medium text-white truncate max-w-[80%]">
                     {wallpaper.title}
                   </span>
+                  {wallpaper.isCustom && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeCustomWallpaper(wallpaper.id);
+                      }}
+                      className="p-1 rounded bg-black/50 text-white/60 hover:text-rose-400 transition-colors"
+                      title="Xóa hình nền này"
+                    >
+                      <Trash2 size={13} />
+                    </button>
+                  )}
                 </div>
                 {isSelected && (
                   <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary text-black flex items-center justify-center shadow-lg">
@@ -178,4 +269,3 @@ export const WallpaperModal: React.FC = () => {
     </div>
   );
 };
-

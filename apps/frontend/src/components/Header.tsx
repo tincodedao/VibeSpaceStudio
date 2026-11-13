@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Maximize2, Minimize2, Sparkles } from 'lucide-react';
+import { Volume2, VolumeX, Maximize2, Minimize2, Sparkles, User, Cloud, LogOut, Loader2 } from 'lucide-react';
 import { useMixerStore } from '../stores/useMixerStore';
 import { useUIStore } from '../stores/useUIStore';
+import { useAuthStore } from '../stores/useAuthStore';
 
 export const Header: React.FC = () => {
   const [timeStr, setTimeStr] = useState('');
   const [dateStr, setDateStr] = useState('');
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const { masterVolume, setMasterVolume, isMuted, toggleMasterMute, activeCount } = useMixerStore();
   const { isFullscreen, toggleFullscreen, toggleDrawer, isZenMode } = useUIStore();
+  const { user, profile, openAuthModal, signOut, syncWithCloud, isSyncing } = useAuthStore();
 
   useEffect(() => {
     const updateTime = () => {
@@ -109,6 +112,62 @@ export const Header: React.FC = () => {
           >
             <Sparkles className="w-4 h-4" />
           </button>
+
+          {/* User Auth Profile Pod */}
+          <div className="relative">
+            {user ? (
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-2 py-1 px-2.5 rounded-full bg-white/10 hover:bg-white/15 specular-rim text-xs text-white transition-all border border-amber-400/30"
+              >
+                <div className="w-5 h-5 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold text-[10px]">
+                  {profile?.display_name ? profile.display_name[0].toUpperCase() : user.email?.[0].toUpperCase() || 'U'}
+                </div>
+                <span className="max-w-[80px] sm:max-w-[120px] truncate hidden sm:inline">
+                  {profile?.display_name || user.email?.split('@')[0]}
+                </span>
+                {isSyncing && <Loader2 size={12} className="animate-spin text-amber-300" />}
+              </button>
+            ) : (
+              <button
+                onClick={openAuthModal}
+                className="flex items-center gap-1.5 py-1.5 px-3 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-900 font-medium text-xs shadow-md transition-all active:scale-95"
+              >
+                <User size={13} />
+                <span>Đăng nhập</span>
+              </button>
+            )}
+
+            {/* Dropdown Menu */}
+            {user && showUserMenu && (
+              <div className="absolute right-0 mt-2 w-48 py-2 rounded-xl glass-panel specular-rim bg-slate-900/90 border border-white/10 shadow-xl z-50">
+                <div className="px-3 py-1.5 border-b border-white/10">
+                  <p className="text-[11px] text-white/50">Đã đăng nhập:</p>
+                  <p className="text-xs font-semibold text-white truncate">{user.email}</p>
+                </div>
+                <button
+                  onClick={() => {
+                    syncWithCloud();
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full px-3 py-2 text-left text-xs text-white/80 hover:text-white hover:bg-white/10 flex items-center gap-2"
+                >
+                  <Cloud size={14} className={isSyncing ? 'animate-spin text-amber-400' : 'text-amber-400'} />
+                  <span>Đồng bộ đám mây</span>
+                </button>
+                <button
+                  onClick={() => {
+                    signOut();
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full px-3 py-2 text-left text-xs text-rose-300 hover:text-rose-200 hover:bg-white/10 flex items-center gap-2"
+                >
+                  <LogOut size={14} />
+                  <span>Đăng xuất</span>
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>

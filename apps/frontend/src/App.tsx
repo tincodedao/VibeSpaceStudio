@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { WallpaperViewer } from './components/WallpaperViewer';
 import { Header } from './components/Header';
 import { PomodoroClock } from './components/PomodoroClock';
@@ -8,9 +8,11 @@ import { YoutubePlayer } from './components/YoutubePlayer';
 import { TodoDrawer } from './components/TodoDrawer';
 import { WallpaperModal } from './components/WallpaperModal';
 import { ZenModeView } from './components/ZenModeView';
+import { AuthModal } from './components/AuthModal';
 import { useDailyReset } from './hooks/useDailyReset';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import { useUIStore } from './stores/useUIStore';
+import { useAuthStore } from './stores/useAuthStore';
 
 export const App: React.FC = () => {
   // Activate automatic background hooks
@@ -18,6 +20,11 @@ export const App: React.FC = () => {
   useKeyboardShortcuts();
 
   const { isZenMode } = useUIStore();
+  const { initialize } = useAuthStore();
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
 
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden">
@@ -42,6 +49,7 @@ export const App: React.FC = () => {
       <YoutubePlayer />
       <TodoDrawer />
       <WallpaperModal />
+      <AuthModal />
 
       {/* 6. Zen Mode View (shows when Zen mode is active) */}
       <ZenModeView />
@@ -50,4 +58,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-

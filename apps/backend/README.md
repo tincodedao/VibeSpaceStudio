@@ -17,3 +17,4 @@ Chạy từ thư mục gốc monorepo:
 - `npm run dev:backend` : Chạy backend ở chế độ watch/hot-reload (sử dụng tsx)
 - `npm run build:backend` : Compile TypeScript sang thư mục `dist/`
 - `npm run start:backend` : Khởi chạy bundle đã compile
+

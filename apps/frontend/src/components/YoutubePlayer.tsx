@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Play, Pause, Volume2, VolumeX, Link, Radio, ExternalLink } from 'lucide-react';
+import { X, Play, Pause, Volume2, VolumeX, Link, Radio, ExternalLink, Trash2, Music } from 'lucide-react';
 import { useYoutubeStore, LOFI_CHANNELS } from '../stores/useYoutubeStore';
 import { useUIStore } from '../stores/useUIStore';
 
@@ -10,11 +10,14 @@ export const YoutubePlayer: React.FC = () => {
     isPlaying,
     volume,
     isMuted,
+    customTracks,
     togglePlay,
     setVolume,
     toggleMute,
     parseAndPlayUrl,
     selectChannel,
+    setVideoId,
+    removeCustomTrack
   } = useYoutubeStore();
 
   const { activeDrawer, closeDrawer } = useUIStore();
@@ -48,7 +51,7 @@ export const YoutubePlayer: React.FC = () => {
 
       {/* Floating Mini-Player Dialog */}
       {isOpen && (
-        <aside className="fixed bottom-24 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-6 z-50 w-[92vw] sm:w-[400px] glass-panel rounded-3xl p-5 shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95">
+        <aside className="fixed bottom-24 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-6 z-50 w-[92vw] sm:w-[420px] max-h-[85vh] overflow-y-auto glass-panel rounded-3xl p-5 shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95">
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -100,50 +103,34 @@ export const YoutubePlayer: React.FC = () => {
               <h3 className="text-xs font-semibold text-on-surface truncate">
                 {currentTitle}
               </h3>
-              <a
-                href={`https://youtube.com/watch?v=${currentVideoId}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-[10px] text-primary hover:underline mt-1"
-              >
-                Open on YouTube <ExternalLink className="w-2.5 h-2.5" />
-              </a>
             </div>
+
+            <a
+              href={`https://youtube.com/watch?v=${currentVideoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-on-surface-variant hover:text-primary transition-colors"
+              title="Open stream in YouTube"
+            >
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
 
-          {/* Animated Waveform Bars */}
-          <div className="flex items-center justify-between gap-1 h-6 px-1">
-            {[40, 60, 20, 80, 50, 90, 30, 70, 45, 85, 35, 95, 60, 40, 75, 55, 30, 80, 65, 45].map(
-              (height, idx) => (
-                <span
-                  key={idx}
-                  className={`flex-1 rounded-full transition-all duration-300 ${
-                    isPlaying ? 'bg-primary/70 animate-pulse' : 'bg-white/10'
-                  }`}
-                  style={{
-                    height: isPlaying ? `${Math.max(15, (height * (idx % 2 === 0 ? 0.9 : 1.1)) % 100)}%` : '15%',
-                    animationDelay: `${idx * 60}ms`,
-                  }}
-                />
-              )
-            )}
-          </div>
-
-          {/* Controls Row */}
-          <div className="flex items-center justify-between gap-3 pt-1">
+          {/* Player Controls */}
+          <div className="flex items-center justify-between gap-3">
             <button
               onClick={togglePlay}
-              className="flex-1 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-primary text-on-primary-container font-semibold text-xs flex items-center justify-center gap-2 active:scale-95 transition-all shadow-md glow-amber-subtle"
+              className="flex-1 py-2.5 px-4 rounded-full bg-primary hover:bg-amber-300 text-on-primary font-semibold text-xs flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95 transition-all"
             >
               {isPlaying ? (
                 <>
                   <Pause className="w-4 h-4 fill-current" />
-                  <span>Pause Stream</span>
+                  <span>Pause Lofi</span>
                 </>
               ) : (
                 <>
                   <Play className="w-4 h-4 fill-current" />
-                  <span>Play Lofi Stream</span>
+                  <span>Play Lofi</span>
                 </>
               )}
             </button>
@@ -194,12 +181,49 @@ export const YoutubePlayer: React.FC = () => {
             </div>
           </div>
 
+          {/* Saved Custom Tracks */}
+          {customTracks.length > 0 && (
+            <div>
+              <div className="text-[11px] text-on-surface-variant font-medium mb-1.5 flex items-center gap-1.5">
+                <Music size={12} className="text-amber-400" />
+                <span>Nhạc đã lưu của bạn ({customTracks.length})</span>
+              </div>
+              <div className="max-h-36 overflow-y-auto space-y-1 pr-1">
+                {customTracks.map((tr) => (
+                  <div
+                    key={tr.id}
+                    className={`flex items-center justify-between px-2.5 py-1.5 rounded-xl text-xs border transition-all ${
+                      currentVideoId === tr.youtubeId
+                        ? 'bg-amber-400/15 border-amber-400/30 text-amber-300 font-medium'
+                        : 'bg-white/5 border-white/5 text-white/80 hover:bg-white/10'
+                    }`}
+                  >
+                    <button
+                      onClick={() => setVideoId(tr.youtubeId, tr.title)}
+                      className="flex-1 text-left truncate mr-2"
+                      title={tr.title}
+                    >
+                      {tr.title}
+                    </button>
+                    <button
+                      onClick={() => removeCustomTrack(tr.id)}
+                      className="p-1 text-white/40 hover:text-rose-400 transition-colors"
+                      title="Xóa bài hát này"
+                    >
+                      <Trash2 size={13} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Custom YouTube URL Input */}
           <form onSubmit={handleUrlSubmit} className="pt-1">
             <div className="relative">
               <input
                 type="text"
-                placeholder="Paste YouTube URL or Video ID..."
+                placeholder="Dán link hoặc ID YouTube để thêm..."
                 value={urlInput}
                 onChange={(e) => {
                   setUrlInput(e.target.value);
@@ -216,12 +240,12 @@ export const YoutubePlayer: React.FC = () => {
                 type="submit"
                 className="absolute right-1.5 top-1 px-2.5 py-1 rounded-lg bg-primary/20 hover:bg-primary/30 text-primary text-[10px] font-semibold transition-colors"
               >
-                Play
+                Thêm & Phát
               </button>
             </div>
             {inputError && (
               <span className="text-[10px] text-red-400 mt-1 block px-1">
-                Invalid YouTube link. Please paste a valid video or watch link.
+                Link YouTube không hợp lệ. Vui lòng kiểm tra lại.
               </span>
             )}
           </form>
@@ -230,4 +254,3 @@ export const YoutubePlayer: React.FC = () => {
     </>
   );
 };
-

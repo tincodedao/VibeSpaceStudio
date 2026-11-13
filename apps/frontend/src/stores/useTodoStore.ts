@@ -2,6 +2,8 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { TodoItem } from '../types';
 import confetti from 'canvas-confetti';
+import { useAuthStore } from './useAuthStore';
+import { API_BASE_URL } from '../lib/supabase';
 
 interface TodoState {
   todos: TodoItem[];
@@ -13,6 +15,7 @@ interface TodoState {
   deleteTodo: (id: string) => void;
   toggleDaily: (id: string) => void;
   checkAndResetDaily: () => void;
+  setTodos: (todos: TodoItem[]) => void;
 }
 
 const getTodayDateString = () => {
@@ -34,23 +37,55 @@ export const useTodoStore = create<TodoState>()(
       todos: INITIAL_TODOS,
       lastActiveDate: getTodayDateString(),
 
-      addTodo: (text, isDaily = false) => {
+      setTodos: (todos) => set({ todos }),
+
+      addTodo: async (text, isDaily = false) => {
         if (!text.trim()) return;
+        const tempId = Date.now().toString();
         const newTodo: TodoItem = {
-          id: Date.now().toString(),
+          id: tempId,
           text: text.trim(),
           completed: false,
           isDaily,
           createdAt: Date.now()
         };
         set(s => ({ todos: [newTodo, ...s.todos] }));
+
+        // Cloud sync if authenticated
+        const { session } = useAuthStore.getState();
+        if (session) {
+          try {
+            const res = await fetch(`${API_BASE_URL}/todos`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${session.access_token}`
+              },
+              body: JSON.stringify({
+                text: text.trim(),
+                completed: false,
+                is_routine: isDaily
+              })
+            });
+            if (res.ok) {
+              const created = await res.json();
+              set(s => ({
+                todos: s.todos.map(t => t.id === tempId ? { ...t, id: created.id } : t)
+              }));
+            }
+          } catch (e) {
+            console.error('[Todo API] Add failed:', e);
+          }
+        }
       },
 
-      toggleTodo: (id) => {
+      toggleTodo: async (id) => {
         const { todos } = get();
+        let targetCompleted = false;
         const updated = todos.map(t => {
           if (t.id === id) {
             const nextCompleted = !t.completed;
+            targetCompleted = nextCompleted;
             if (nextCompleted) {
               confetti({
                 particleCount: 50,
@@ -67,10 +102,42 @@ export const useTodoStore = create<TodoState>()(
           return t;
         });
         set({ todos: updated });
+
+        // Cloud sync if authenticated
+        const { session } = useAuthStore.getState();
+        if (session) {
+          try {
+            await fetch(`${API_BASE_URL}/todos/${id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${session.access_token}`
+              },
+              body: JSON.stringify({ completed: targetCompleted })
+            });
+          } catch (e) {
+            console.error('[Todo API] Toggle failed:', e);
+          }
+        }
       },
 
-      deleteTodo: (id) => {
+      deleteTodo: async (id) => {
         set(s => ({ todos: s.todos.filter(t => t.id !== id) }));
+
+        // Cloud sync if authenticated
+        const { session } = useAuthStore.getState();
+        if (session) {
+          try {
+            await fetch(`${API_BASE_URL}/todos/${id}`, {
+              method: 'DELETE',
+              headers: {
+                Authorization: `Bearer ${session.access_token}`
+              }
+            });
+          } catch (e) {
+            console.error('[Todo API] Delete failed:', e);
+          }
+        }
       },
 
       toggleDaily: (id) => {
@@ -84,22 +151,26 @@ export const useTodoStore = create<TodoState>()(
         const { lastActiveDate, todos } = get();
 
         if (lastActiveDate !== today) {
-          // It's a new day!
-          // Daily tasks are uncompleted, one-off completed tasks are cleared
-          const refreshed = todos
-            .filter(t => t.isDaily || !t.completed)
-            .map(t => t.isDaily ? { ...t, completed: false, completedAt: undefined } : t);
+          const resetTodos = todos.map(t => {
+            if (t.isDaily) {
+              return { ...t, completed: false, completedAt: undefined };
+            }
+            return t;
+          });
 
           set({
-            todos: refreshed,
+            todos: resetTodos,
             lastActiveDate: today
           });
         }
       }
     }),
     {
-      name: 'vibespace-todo-store'
+      name: 'vibespace-todos-storage',
+      partialize: (s) => ({
+        todos: s.todos,
+        lastActiveDate: s.lastActiveDate
+      })
     }
   )
 );
-
