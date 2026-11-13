@@ -5,4 +5,8 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIU
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:4000/api/v1';
+export const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD
+    ? 'https://vibespace-api-ka2h.onrender.com/api/v1'
+    : 'http://127.0.0.1:4000/api/v1');
