@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VibeSpace — Ambient Focus Workspace</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#2d3733",
+            "surface-bright": "#323b37",
+            "on-background": "#dbe5df",
+            "secondary-container": "#00a572",
+            "on-error": "#690005",
+            "surface-dim": "#0c1512",
+            "on-primary-fixed-variant": "#653e00",
+            "secondary-fixed": "#6ffbbe",
+            "on-tertiary": "#3a3000",
+            "error-container": "#93000a",
+            "on-tertiary-fixed": "#221b00",
+            "primary": "#ffc174",
+            "tertiary-fixed-dim": "#dcc66e",
+            "on-primary": "#472a00",
+            "on-error-container": "#ffdad6",
+            "primary-fixed": "#ffddb8",
+            "error": "#ffb4ab",
+            "surface-variant": "#2d3733",
+            "on-primary-container": "#613b00",
+            "on-secondary-fixed-variant": "#005236",
+            "secondary": "#4edea3",
+            "outline-variant": "#534434",
+            "primary-container": "#f59e0b",
+            "background": "#0c1512",
+            "inverse-primary": "#855300",
+            "surface-tint": "#ffb95f",
+            "on-secondary-fixed": "#002113",
+            "primary-fixed-dim": "#ffb95f",
+            "inverse-surface": "#dbe5df",
+            "on-surface": "#dbe5df",
+            "tertiary-fixed": "#f9e287",
+            "on-secondary": "#003824",
+            "surface": "#0c1512",
+            "on-primary-fixed": "#2a1700",
+            "on-surface-variant": "#d8c3ad",
+            "secondary-fixed-dim": "#4edea3",
+            "on-secondary-container": "#00311f",
+            "surface-container-high": "#232c28",
+            "tertiary": "#e2cc73",
+            "surface-container": "#18211e",
+            "tertiary-container": "#c5b15b",
+            "outline": "#a08e7a",
+            "on-tertiary-fixed-variant": "#534600",
+            "surface-container-low": "#141d1a",
+            "inverse-on-surface": "#29322f",
+            "surface-container-lowest": "#07100d",
+            "on-tertiary-container": "#504300"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "1rem",
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin": "2.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem"
+          },
+          "fontFamily": {
+            "display-timer": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "tabular-clock": ["Inter"],
+            "display-timer-mobile": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "display-timer": ["5rem", { "lineHeight": "5rem", "letterSpacing": "-0.03em", "fontWeight": "300" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-sm": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "tabular-clock": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "display-timer-mobile": ["3.5rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    
+    /* Radial glow filters & Ambient highlights */
+    .glow-amber-subtle {
+      box-shadow: 0 0 20px 2px rgba(245, 158, 11, 0.25), 0 0 40px 10px rgba(245, 158, 11, 0.10);
+    }
+    .amber-bloom {
+      filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+    }
+    .specular-rim {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Subtle breathing animation for organic pulse */
+    @keyframes subtle-breath {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.015); }
+    }
+    .animate-breath {
+      animation: subtle-breath 7s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased select-none min-h-screen w-full overflow-hidden relative font-body-md text-body-md">
+<!-- Atmospheric Background Layer -->
+<div class="fixed inset-0 z-0 overflow-hidden">
+<img alt="Atmospheric moody pine forest canopy with morning mist" class="w-full h-full object-cover object-center scale-105 filter brightness-[0.82] contrast-[1.08] transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjTOjzIy2GELg2en0ffzQmI4fzdRHn8xJBCNstpSXQlZ5cdK-hRzem9Cb10NgHIp8NryhUOIMN_iwNGu4T8pXeK52ZHaRFJz1xbTpq0_0ZQ0ySvu0gZLzGIwLVn5DUilkpcgeEUwDb1raQMGhc8rfU2uZCKyQYAiUMcpcx4nfLeUS9UwQLyYbNU7YKFEpF633iEZQQZ3V7shC7IJNPlx7q3G_cYA8yoTnsqig6Rq0ZqW70RjopRCEdHj5PD2UD5OtvRZWMlGugJrI"/>
+<!-- Deep organic canopy overlay -->
+<div class="absolute inset-0 bg-surface-container-lowest/40 backdrop-blur-[1px] mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/40"></div>
+</div>
+<!-- Shared Component: TopNavBar -->
+<header class="w-full fixed top-0 left-0 z-40 bg-surface-container/40 dark:bg-surface-container/40 backdrop-blur-md border-b border-outline-variant/10 dark:border-outline-variant/10 shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<!-- Brand & Mode Pill -->
+<div class="flex items-center gap-3.5">
+<a class="font-headline-md text-headline-md font-semibold tracking-tight text-on-surface dark:text-on-surface flex items-center gap-2 group cursor-pointer" href="#">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container amber-bloom group-hover:scale-125 transition-transform duration-200"></span>
+<span>VibeSpace</span>
+</a>
+<span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high/60 specular-rim font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Deep Work
+        </span>
+</div>
+<!-- Realtime Tabular Clock & Date -->
+<div class="flex flex-col items-center justify-center">
+<div class="font-tabular-clock text-tabular-clock font-medium tracking-wider text-on-surface text-base sm:text-lg drop-shadow-sm" id="live-clock">
+          10:42:18 AM
+        </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant font-normal tracking-wide opacity-80" id="live-date">
+          Wednesday, Oct 24
+        </div>
+</div>
+<!-- Trailing Action Icons Cluster -->
+<div class="flex items-center gap-2 sm:gap-3">
+<!-- Audio slider pod -->
+<div class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-container-high/40 specular-rim text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[18px]" data-icon="volume_up">volume_up</span>
+<div class="w-16 h-1 bg-surface-container-highest rounded-full overflow-hidden relative cursor-pointer group">
+<div class="w-3/4 h-full bg-gradient-to-r from-secondary to-primary-container group-hover:brightness-110"></div>
+</div>
+</div>
+<!-- Fullscreen Toggle -->
+<button aria-label="Toggle Fullscreen" class="p-2 rounded-full text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 scale-95 active:scale-90 flex items-center justify-center specular-rim" id="fullscreen-btn">
+<span class="material-symbols-outlined text-[20px]" data-icon="fullscreen">fullscreen</span>
+</button>
+<!-- Quick Settings Gear -->
+<button aria-label="Settings" class="p-2 rounded-full text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 scale-95 active:scale-90 flex items-center justify-center specular-rim">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Focus Stage (Centered Pomodoro Workspace) -->
+<main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-16 pb-28">
+<div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto animate-breath">
+<!-- Circular Progress & Timer Ring Stage -->
+<div class="relative w-72 h-72 sm:w-84 sm:h-84 md:w-96 md:h-96 flex items-center justify-center">
+<!-- Background Radial Frosted Ambient Disc -->
+<div class="absolute inset-4 rounded-full bg-surface-container-low/45 backdrop-blur-[24px] specular-rim"></div>
+<!-- SVG Concentric Timer Track -->
+<svg class="absolute inset-0 w-full h-full -rotate-90 transform" viewbox="0 0 320 320">
+<defs>
+<lineargradient id="amberGlow" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#F59E0B"></stop>
+<stop offset="100%" stop-color="#FDE68A"></stop>
+</lineargradient>
+<filter height="140%" id="bloomEffect" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="3.5"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<!-- Outer Inactive Track -->
+<circle class="text-white/[0.07] stroke-current" cx="160" cy="160" fill="transparent" r="140" stroke-width="4.5"></circle>
+<!-- Active Animated Progress Stroke (~70% completed state) -->
+<circle class="transition-all duration-1000 amber-bloom" cx="160" cy="160" fill="transparent" id="timer-progress-ring" r="140" stroke="url(#amberGlow)" stroke-dasharray="879.64" stroke-dashoffset="263.89" stroke-linecap="round" stroke-width="6.5"></circle>
+</svg>
+<!-- Interior Readout Canvas -->
+<div class="relative z-10 flex flex-col items-center justify-center text-center">
+<!-- Mode Tag Pill -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] backdrop-blur-md specular-rim mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container amber-bloom"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-medium">Focus Session</span>
+</div>
+<!-- Large Display Timer Numerals -->
+<div class="font-display-timer text-display-timer text-on-surface font-light tracking-tight drop-shadow-md my-1" id="timer-digits">
+            25:00
+          </div>
+<!-- Session Indicator Dots (1 of 4 completed) -->
+<div class="flex items-center gap-2 mt-1 mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium mr-1">Session 1 of 4</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container amber-bloom"></span>
+<span class="w-2 h-2 rounded-full bg-white/20"></span>
+<span class="w-2 h-2 rounded-full bg-white/20"></span>
+<span class="w-2 h-2 rounded-full bg-white/20"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Controls Deck -->
+<div class="flex items-center justify-center gap-3.5 mt-8">
+<!-- Reset / Restart Button -->
+<button class="p-3.5 rounded-full bg-surface-container-high/50 hover:bg-surface-bright/40 text-on-surface-variant hover:text-on-surface backdrop-blur-lg specular-rim transition-all duration-200 active:scale-90 flex items-center justify-center" id="reset-timer-btn" title="Reset Session">
+<span class="material-symbols-outlined text-[20px]" data-icon="refresh">refresh</span>
+</button>
+<!-- Primary Start / Pause Pill Button -->
+<button class="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary-container to-primary hover:brightness-110 text-on-primary-container font-headline-sm text-headline-sm font-semibold tracking-wide flex items-center gap-2.5 glow-amber-subtle active:scale-95 transition-all duration-200" id="toggle-timer-btn">
+<span class="material-symbols-outlined text-[22px] font-bold" data-icon="play_arrow">play_arrow</span>
+<span>Start Focus</span>
+</button>
+<!-- Skip Track / Session Button -->
+<button class="p-3.5 rounded-full bg-surface-container-high/50 hover:bg-surface-bright/40 text-on-surface-variant hover:text-on-surface backdrop-blur-lg specular-rim transition-all duration-200 active:scale-90 flex items-center justify-center" id="skip-timer-btn" title="Skip Interval">
+<span class="material-symbols-outlined text-[20px]" data-icon="skip_next">skip_next</span>
+</button>
+</div>
+<!-- Ambient Music Status Tag -->
+<div class="mt-6 flex items-center gap-2.5 px-4 py-2 rounded-full bg-surface-container-low/50 backdrop-blur-md specular-rim cursor-pointer hover:bg-surface-container/60 transition-all duration-200 group">
+<span class="text-primary-container text-xs font-semibold amber-bloom animate-pulse">♪</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors truncate max-w-xs">
+          Rainy Night in Kyoto — Lofi Sleep
+        </span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant opacity-60 group-hover:opacity-100" data-icon="music_note">music_note</span>
+</div>
+</div>
+</main>
+<!-- Shared Component: BottomNavBar (Floating System Dock) -->
+<!-- Context Match: Main view is focused on Lofi Player ambient experience -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-surface-container-high/65 dark:bg-surface-container-high/65 backdrop-blur-2xl border border-outline-variant/15 dark:border-outline-variant/15 shadow-2xl shadow-surface-container-lowest/80">
+<!-- Item 1: Lofi Player (ACTIVE DESTINATION) -->
+<button aria-label="Lofi Player" class="relative text-primary dark:text-primary p-3 rounded-full flex flex-col items-center justify-center after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:absolute after:bottom-1 hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90">
+<span class="material-symbols-outlined text-[20px]" data-icon="radio">radio</span>
+<span class="font-label-sm text-label-sm mt-0.5">Lofi Player</span>
+</button>
+<!-- Item 2: Soundboard -->
+<button aria-label="Soundboard" class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90">
+<span class="material-symbols-outlined text-[20px]" data-icon="graphic_eq">graphic_eq</span>
+<span class="font-label-sm text-label-sm mt-0.5">Soundboard</span>
+</button>
+<!-- Item 3: Daily Todo -->
+<button aria-label="Daily Todo" class="relative text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90">
+<span class="material-symbols-outlined text-[20px]" data-icon="checklist">checklist</span>
+<span class="font-label-sm text-label-sm mt-0.5">Daily Todo</span>
+<!-- Count Badge -->
+<span class="absolute top-1.5 right-3 w-4 h-4 rounded-full bg-primary-container text-on-primary-container text-[9px] font-bold flex items-center justify-center leading-none">3</span>
+</button>
+<!-- Item 4: Wallpapers -->
+<button aria-label="Wallpapers" class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90">
+<span class="material-symbols-outlined text-[20px]" data-icon="wallpaper">wallpaper</span>
+<span class="font-label-sm text-label-sm mt-0.5">Wallpapers</span>
+</button>
+<!-- Item 5: Zen Mode -->
+<button aria-label="Zen Mode" class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90" id="zen-dock-btn">
+<span class="material-symbols-outlined text-[20px]" data-icon="self_improvement">self_improvement</span>
+<span class="font-label-sm text-label-sm mt-0.5">Zen Mode</span>
+</button>
+</nav>
+<!-- Interactive Light Micro-script -->
+<script>
+    // Live Tabular Clock Handler
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+      const dateStr = now.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'short',
+        day: 'numeric'
+      });
+      
+      const clockEl = document.getElementById('live-clock');
+      const dateEl = document.getElementById('live-date');
+      if (clockEl) clockEl.textContent = timeStr;
+      if (dateEl) dateEl.textContent = dateStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Pomodoro Interactive Counter Engine
+    let isRunning = false;
+    let totalSeconds = 25 * 60;
+    let currentSeconds = 25 * 60;
+    let timerInterval = null;
+
+    const digitsEl = document.getElementById('timer-digits');
+    const toggleBtn = document.getElementById('toggle-timer-btn');
+    const resetBtn = document.getElementById('reset-timer-btn');
+    const progressRing = document.getElementById('timer-progress-ring');
+    const circumference = 2 * Math.PI * 140; // ~879.64
+
+    function renderTimerDisplay() {
+      const mins = Math.floor(currentSeconds / 60).toString().padStart(2, '0');
+      const secs = (currentSeconds % 60).toString().padStart(2, '0');
+      digitsEl.textContent = `${mins}:${secs}`;
+
+      // Progress offset
+      const progressRatio = currentSeconds / totalSeconds;
+      const offset = circumference * (1 - progressRatio);
+      progressRing.style.strokeDashoffset = offset;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      isRunning = !isRunning;
+      if (isRunning) {
+        toggleBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[22px] font-bold" data-icon="pause">pause</span>
+          <span>Pause</span>
+        `;
+        timerInterval = setInterval(() => {
+          if (currentSeconds > 0) {
+            currentSeconds--;
+            renderTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            isRunning = false;
+            toggleBtn.innerHTML = `
+              <span class="material-symbols-outlined text-[22px] font-bold" data-icon="play_arrow">play_arrow</span>
+              <span>Start Focus</span>
+            `;
+          }
+        }, 1000);
+      } else {
+        clearInterval(timerInterval);
+        toggleBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[22px] font-bold" data-icon="play_arrow">play_arrow</span>
+          <span>Start Focus</span>
+        `;
+      }
+    });
+
+    resetBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      isRunning = false;
+      currentSeconds = 25 * 60;
+      renderTimerDisplay();
+      toggleBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[22px] font-bold" data-icon="play_arrow">play_arrow</span>
+        <span>Start Focus</span>
+      `;
+    });
+
+    // Fullscreen toggler
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    });
+  </script>
+</body></html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VibeSpace - Atmospheric Wallpapers</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration Verbatim -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-bright": "#323b37",
+            "on-surface": "#dbe5df",
+            "surface-tint": "#ffb95f",
+            "inverse-on-surface": "#29322f",
+            "outline": "#a08e7a",
+            "outline-variant": "#534434",
+            "on-background": "#dbe5df",
+            "primary-container": "#f59e0b",
+            "surface-variant": "#2d3733",
+            "background": "#0c1512",
+            "on-tertiary-fixed": "#221b00",
+            "error-container": "#93000a",
+            "surface-container-lowest": "#07100d",
+            "on-secondary": "#003824",
+            "tertiary-container": "#c5b15b",
+            "secondary": "#4edea3",
+            "on-surface-variant": "#d8c3ad",
+            "tertiary": "#e2cc73",
+            "on-primary-container": "#613b00",
+            "surface-container-highest": "#2d3733",
+            "secondary-fixed": "#6ffbbe",
+            "error": "#ffb4ab",
+            "on-secondary-fixed": "#002113",
+            "surface": "#0c1512",
+            "primary-fixed": "#ffddb8",
+            "secondary-container": "#00a572",
+            "on-primary-fixed": "#2a1700",
+            "on-tertiary-fixed-variant": "#534600",
+            "primary": "#ffc174",
+            "on-tertiary": "#3a3000",
+            "on-tertiary-container": "#504300",
+            "surface-container-high": "#232c28",
+            "surface-container-low": "#141d1a",
+            "surface-dim": "#0c1512",
+            "tertiary-fixed": "#f9e287",
+            "on-error": "#690005",
+            "tertiary-fixed-dim": "#dcc66e",
+            "on-secondary-fixed-variant": "#005236",
+            "on-error-container": "#ffdad6",
+            "surface-container": "#18211e",
+            "secondary-fixed-dim": "#4edea3",
+            "on-secondary-container": "#00311f",
+            "on-primary": "#472a00",
+            "on-primary-fixed-variant": "#653e00",
+            "inverse-primary": "#855300",
+            "inverse-surface": "#dbe5df",
+            "primary-fixed-dim": "#ffb95f"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-mobile": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "margin": "2.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin-mobile": "1rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "tabular-clock": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "display-timer-mobile": ["Plus Jakarta Sans"],
+            "display-timer": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "letterSpacing": "0em", "fontWeight": "400" }],
+            "tabular-clock": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "headline-sm": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "display-timer-mobile": ["3.5rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+            "display-timer": ["5rem", { "lineHeight": "5rem", "letterSpacing": "-0.03em", "fontWeight": "300" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Custom Range styling */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 9999px;
+      background: #ffc174;
+      cursor: pointer;
+      border: 2px solid #0c1512;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+      transition: transform 0.15s ease-in-out;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 16px;
+      width: 16px;
+      border-radius: 9999px;
+      background: #ffc174;
+      cursor: pointer;
+      border: 2px solid #0c1512;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden select-none min-h-screen relative font-body-md">
+<!-- Background Canvas: Misty Pine Forest with organic atmospheric overlay -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute inset-0 bg-cover bg-center scale-105 filter blur-[2px] transition-transform duration-1000" style="background-image: url('https://lh3.googleusercontent.com/aida/ALJJyrBn6mNrHG2c-FjV39G8Y0ibGyDBkAP26a6OjhAc_LBEJDTQ6Wwm664VcaYzle6yEGlwFfjJ5sKWIla1amr5jdAG3J70fblx8SOyfjTruBjqxP1SKnib5DeGa7nQBN8l9JsLdAWPjl8fWoyKo78EjttvJ0Efrm36M3IFSTUYa7edAejI0ZHBMEJ5NC9-QJiZZ194oeyqyaHeJSdtZeeiNfNbxZhvk-fhSLhEBuRsdjg5PB_S64Rj3zlR2S0');"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-[#09120F]/80 via-[#041510]/60 to-[#07100D]/90 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-radial from-transparent via-[#09120F]/40 to-[#07100D]/90"></div>
+</div>
+<!-- Shared Component: TopNavBar -->
+<header class="w-full fixed top-0 left-0 z-40 bg-surface-container/40 backdrop-blur-md border-b border-outline-variant/10 shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<!-- Brand Logo / Product Name -->
+<div class="font-headline-md text-headline-md font-semibold tracking-tight text-on-surface flex items-center gap-2 cursor-pointer group">
+<span class="w-8 h-8 rounded-full bg-primary-container/20 border border-primary/30 flex items-center justify-center text-primary group-hover:scale-105 transition-transform duration-200">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+</span>
+<span class="tracking-tight text-on-surface">VibeSpace</span>
+</div>
+<!-- Center Ambient Widget / Mode Badge -->
+<div class="hidden md:flex items-center gap-3 px-4 py-1.5 rounded-full bg-surface-container-high/50 border border-outline-variant/20 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_rgba(78,222,163,0.8)]"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant font-semibold">Deep Work</span>
+<span class="text-outline-variant text-xs">•</span>
+<span class="font-tabular-clock text-tabular-clock text-primary font-medium tracking-wider">06:45 PM</span>
+</div>
+<!-- Trailing Action Icons Cluster -->
+<div class="flex items-center gap-1.5">
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 active:scale-90" title="Audio controls">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 active:scale-90" title="Fullscreen">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 active:scale-90" title="Settings">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Modal Backdrop & Floating Dialog Window -->
+<main class="fixed inset-0 z-40 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md bg-black/60 pt-16 pb-24 overflow-y-auto">
+<!-- Modal Card (Tier 2/3 Glassmorphism with Specular Rim & Glowing Drop-Shadow) -->
+<div class="w-full max-w-[760px] bg-surface-container-high/90 backdrop-blur-2xl rounded-3xl border border-white/15 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.85),inset_0_1px_0_0_rgba(255,255,255,0.15)] overflow-hidden flex flex-col my-auto transition-all animate-in fade-in zoom-in-95 duration-200">
+<!-- Modal Header -->
+<div class="px-7 pt-6 pb-4 flex items-center justify-between border-b border-outline-variant/15">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]" style="font-variation-settings: 'FILL' 1;">wallpaper</span>
+<h1 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Atmospheric Wallpapers</h1>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">32 ambient scenes available • Calibrated for deep flow</p>
+</div>
+<button aria-label="Close dialog" class="w-9 h-9 rounded-full bg-surface-container-highest/40 hover:bg-surface-container-highest/80 text-on-surface-variant hover:text-on-surface flex items-center justify-center border border-outline-variant/15 transition-all duration-200 active:scale-90">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Category Filter Pills Bar -->
+<div class="px-7 pt-4 pb-2">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<!-- Active Tab -->
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-medium bg-primary/20 text-primary border border-primary/40 shadow-[0_0_12px_rgba(245,158,11,0.2)] whitespace-nowrap transition-all">
+            Misty Forest
+          </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-medium bg-white/5 text-on-surface-variant hover:text-on-surface hover:bg-white/10 border border-white/10 whitespace-nowrap transition-all">
+            Ocean & Coastal
+          </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-medium bg-white/5 text-on-surface-variant hover:text-on-surface hover:bg-white/10 border border-white/10 whitespace-nowrap transition-all">
+            Snowy Mountains
+          </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-medium bg-white/5 text-on-surface-variant hover:text-on-surface hover:bg-white/10 border border-white/10 whitespace-nowrap transition-all">
+            Deep Galaxy
+          </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-medium bg-white/5 text-on-surface-variant hover:text-on-surface hover:bg-white/10 border border-white/10 whitespace-nowrap transition-all">
+            Cozy Interior
+          </button>
+<button class="px-3.5 py-1.5 rounded-full font-label-sm text-label-sm font-medium bg-white/5 text-on-surface-variant hover:text-on-surface hover:bg-white/10 border border-white/10 whitespace-nowrap transition-all">
+            Minimal Gradients
+          </button>
+</div>
+</div>
+<!-- Wallpaper Thumbnail Grid (3 Columns x 2 Rows) -->
+<div class="px-7 py-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+<!-- Card 1: Active / Selected (Misty Forest Dawn) -->
+<div class="group relative rounded-xl overflow-hidden aspect-video border-2 border-primary shadow-[0_0_18px_rgba(245,158,11,0.35)] cursor-pointer transition-all duration-200">
+<img alt="Misty Forest Dawn" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ALJJyrBn6mNrHG2c-FjV39G8Y0ibGyDBkAP26a6OjhAc_LBEJDTQ6Wwm664VcaYzle6yEGlwFfjJ5sKWIla1amr5jdAG3J70fblx8SOyfjTruBjqxP1SKnib5DeGa7nQBN8l9JsLdAWPjl8fWoyKo78EjttvJ0Efrm36M3IFSTUYa7edAejI0ZHBMEJ5NC9-QJiZZ194oeyqyaHeJSdtZeeiNfNbxZhvk-fhSLhEBuRsdjg5PB_S64Rj3zlR2S0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+<!-- Active Badge Top Right -->
+<div class="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/90 text-on-primary-container text-[11px] font-label-sm font-semibold tracking-wide shadow-sm">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">check</span>
+<span>Active</span>
+</div>
+<!-- Card Content Info -->
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white font-medium drop-shadow-sm leading-tight">Misty Forest Dawn</span>
+<div class="flex items-center gap-1 text-[11px] text-secondary font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">air</span>
+<span>Includes Pine Woods Audio</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Night Ocean Waves -->
+<div class="group relative rounded-xl overflow-hidden aspect-video border border-white/10 hover:border-primary/50 shadow-sm cursor-pointer transition-all duration-200">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A tranquil night ocean scene with smooth nocturnal waves rolling under an indigo twilight sky. Soft luminescent moonlight casts silvery ripples on the water surface. The overall atmosphere is calming, moody, and deep blue-emerald, creating an ambient natural desktop scene with cinematic film grain." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDykNW-GKci_f5Xl7NgEezG3J-EWbTDAPrMQgqZEjb1rrbTyPfe-AYhfOvOCWj4stnMR6_kzD-TJbgbnb_lHrmzXPC6_dWIBZmyif8HIZLSlCpS1i9GxfUfuMJ1wbq4Cbv1gVgQK4Slw69P-j1pmivlRUj__SgcaDA5oYJZ6IVvHlDIQjtXp4tkaJPUslIdrc33Y4XSmD3DB0Vl_w8V1O83g07t7OjLZa_r-ms8p-7C3Jl194mmk4QcMCdHlwGt2A_SXTngraEowTg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+<!-- Soundscape Tag & Title -->
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white font-medium drop-shadow-sm leading-tight">Night Ocean Waves</span>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">waves</span>
+<span>Includes Ocean Drift</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Twilight Mountain Peak -->
+<div class="group relative rounded-xl overflow-hidden aspect-video border border-white/10 hover:border-primary/50 shadow-sm cursor-pointer transition-all duration-200">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Serene snow-capped jagged mountain peaks basking under a violet twilight and dusk sky. Soft evening mist curls around dark fir-tree valleys below, illuminated by cold ambient starlight. The color scheme features deep midnight violet, slate gray, and frosty white tones in a quiet contemplative focus space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACfqNUbF4yXvsevjHxxk_8hCe7__1WZpIQSSJzNOt7sOv0NTXq3aUiKBJsveuwFl1SNzs-p2NYF1NTds2pzWWVMcaJIh201AbS2HzaPFn-59vJChxDlsCg4GFu_mlcysaGAcQ_xrMPXkvw-1xeXgGvAKDiMlpRIOokPOCpyZLTJUX2p92FxQf0bqjnJh_rrXnDI3f6BkpFsgiap85h6Ov4dBAkEGRWm-qwauzpFj4isWJSIkSNUTx7NRBWHvTDWqX7XxVKw1K2mpw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white font-medium drop-shadow-sm leading-tight">Twilight Peaks</span>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">ac_unit</span>
+<span>Includes Alpine Breeze</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Cozy Cabin Rain (Using IMAGE_5 lofi aesthetic) -->
+<div class="group relative rounded-xl overflow-hidden aspect-video border border-white/10 hover:border-primary/50 shadow-sm cursor-pointer transition-all duration-200">
+<img alt="Cozy Cabin Rain" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ALJJyrDsxu6sZTFCUfFLDNQyR-1Z4kK8nokJNTo_6xHCKI337cmZvHlF9LmeKD3gQivZUBTh2WUVCW8eRw40cqB-KGaJp60fIQHA6sgVeGBhJdZz7EsSIRxyeto6F_w4CriPAK8sKP9NYgey8a79rGSVFCz69LFlU7gt8KWHzY85B6I5VFEYwOWr8SF2IiDqfy_Id9Z7AkmmF1gvvOMF8lOnSeNjYoMiQbcbmemSko4WF8EXnmPs1vcVZMzShA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white font-medium drop-shadow-sm leading-tight">Cozy Cabin Rain</span>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">water_drop</span>
+<span>Includes Rain Audio</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Deep Galaxy & Nebula -->
+<div class="group relative rounded-xl overflow-hidden aspect-video border border-white/10 hover:border-primary/50 shadow-sm cursor-pointer transition-all duration-200">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive deep cosmic space vista revealing a luminous emerald and deep violet nebula with millions of faint distant stars. A serene obsidian blackness provides high contrast with subtle stellar dust cloud formations, creating a magnificent yet peaceful ambient galaxy backdrop designed for quiet midnight flow state." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBixkRiAR355KFVPjRsNNAdeI_wNvtXGKY_GH9m9QpfnOnE6ELFnHPgb-8nhBIXyeAfVLwDLenvtzNKsis86SnH-CVHNJmZ8yuN7EJvkIWdMeDbXHd6iars2lDmdHv-uA6go3FYJ89N-p2Mc0qrR7_gYSVZmkNkfCsyv7pDy_jJEcwvVK8EmbGQx1t5NzwTE86I5mX5g5xY7zO7bZz-nGc8Lg2DgKwmkmx6T7m0UGMYkaMhp11U1hxNhS-ykTUx_hIongCjvgTAJNY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white font-medium drop-shadow-sm leading-tight">Deep Galaxy & Nebula</span>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">blur_on</span>
+<span>Includes Brown Noise</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Nordic Sunset Gradient -->
+<div class="group relative rounded-xl overflow-hidden aspect-video border border-white/10 hover:border-primary/50 shadow-sm cursor-pointer transition-all duration-200">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist ethereal abstract ambient gradient background smoothly blending warm Scandinavian amber gold into dusk cedar rose and midnight botanical forest green. The composition is clean, silky, non-distracting, with subtle textural film noise that radiates gentle warmth into the work environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4AqQ0ja2S52yifKl-1byklhTkA7663PjymZwzoNC82PfxL6ULMnJgNXFxf3LD4hLAe9a2IukjqUOAQ9fG3yNrEmVwNHuZc7uBEmN3poebcWFWVH0EYfYBk4JQkd1sJ6tUvotZi0NxLiIM8SmTI7AW4f8Z96iZIPD1oTD3I6E-F-xeDoRlunqxFHplnZH-4aruOtcm192pN52qZ2RWCw-VEzCPy_l9mkd8ZqQ3KqidWpWlE5r6cr_k5mYWjJGlzGS_zI8xQgggxqc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white font-medium drop-shadow-sm leading-tight">Nordic Sunset</span>
+<div class="flex items-center gap-1 text-[11px] text-on-surface-variant font-label-sm mt-0.5">
+<span class="material-symbols-outlined text-[12px]">graphic_eq</span>
+<span>Includes Warm Drone</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Adjustment Controls Section -->
+<div class="mt-2 px-7 py-3.5 bg-surface-container-lowest/40 border-t border-outline-variant/15 flex flex-col gap-3">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+<!-- Overlay Dimmer Slider -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">brightness_medium</span>
+<span>Overlay Dimmer</span>
+</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest/60 text-primary border border-outline-variant/20 font-medium">40%</span>
+</div>
+<input class="w-full h-1.5 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="80" min="0" type="range" value="40"/>
+</div>
+<!-- Background Blur Slider -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline">lens_blur</span>
+<span>Background Blur</span>
+</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-highest/60 text-primary border border-outline-variant/20 font-medium">4px</span>
+</div>
+<input class="w-full h-1.5 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="20" min="0" type="range" value="4"/>
+</div>
+</div>
+</div>
+<!-- Bottom Action Bar inside Modal -->
+<div class="px-7 py-4 border-t border-outline-variant/15 bg-surface-container/60 flex items-center justify-between">
+<!-- Randomize / Shuffle button -->
+<button class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-on-surface-variant hover:text-on-surface hover:bg-white/5 border border-white/10 font-label-sm text-label-sm transition-all duration-150 active:scale-95">
+<span class="material-symbols-outlined text-[18px]">casino</span>
+<span>Shuffle Wallpaper</span>
+</button>
+<!-- Right Side Actions -->
+<div class="flex items-center gap-2.5">
+<button class="px-4 py-2 rounded-full text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors duration-150">
+            Cancel
+          </button>
+<button class="inline-flex items-center gap-2 px-5 py-2 rounded-full font-label-sm text-label-sm font-semibold bg-gradient-to-r from-primary-container to-[#d97706] text-on-primary-container shadow-[0_0_16px_rgba(245,158,11,0.4)] hover:shadow-[0_0_22px_rgba(245,158,11,0.6)] hover:brightness-105 active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Apply Wallpaper</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Component: BottomNavBar (Floating Dock) -->
+<!-- Contextual Active: 'Wallpapers' (index 3) is explicitly active with underline dot -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-surface-container-high/65 dark:bg-surface-container-high/65 backdrop-blur-2xl border border-outline-variant/15 dark:border-outline-variant/15 shadow-2xl shadow-surface-container-lowest/80">
+<!-- Item 1: Lofi Player -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90 group" href="#" title="Lofi Player">
+<span class="material-symbols-outlined text-[20px]">radio</span>
+<span class="sr-only">Lofi Player</span>
+</a>
+<!-- Item 2: Soundboard -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90 group" href="#" title="Soundboard">
+<span class="material-symbols-outlined text-[20px]">graphic_eq</span>
+<span class="sr-only">Soundboard</span>
+</a>
+<!-- Item 3: Daily Todo -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90 group" href="#" title="Daily Todo">
+<span class="material-symbols-outlined text-[20px]">checklist</span>
+<span class="sr-only">Daily Todo</span>
+</a>
+<!-- Item 4: Wallpapers (ACTIVE STATE MATCHING PAGE INTENT) -->
+<a class="relative text-primary dark:text-primary p-3 rounded-full flex flex-col items-center justify-center after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:absolute after:bottom-1 hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90 group" href="#" title="Wallpapers">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">wallpaper</span>
+<span class="sr-only">Wallpapers</span>
+</a>
+<!-- Item 5: Zen Mode -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90 group" href="#" title="Zen Mode">
+<span class="material-symbols-outlined text-[20px]">self_improvement</span>
+<span class="sr-only">Zen Mode</span>
+</a>
+</nav>
+</body></html>

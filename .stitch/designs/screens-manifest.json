@@ -1,0 +1,62 @@
+[
+  {
+    "task": "Task 2.2",
+    "component": "MainWorkspace.tsx & QuickDock.tsx & PomodoroCenter.tsx",
+    "key": "screen1-main-workspace",
+    "name": "Screen 1: Main Workspace & Floating Quick Dock",
+    "screenId": "1a5881ddb52b433b920461dc07ca9c39",
+    "htmlFile": "screen1-main-workspace.html",
+    "pngFile": "screen1-main-workspace.png",
+    "success": true
+  },
+  {
+    "task": "Task 2.3",
+    "component": "SoundboardDrawer.tsx & SoundTrackItem.tsx",
+    "key": "screen2-soundboard-drawer",
+    "name": "Screen 2: Ambient Soundboard Drawer (Mixer âm thanh)",
+    "screenId": "52741d2fb4b845d29a9c3f9f06ba8a4d",
+    "htmlFile": "screen2-soundboard-drawer.html",
+    "pngFile": "screen2-soundboard-drawer.png",
+    "success": true
+  },
+  {
+    "task": "Task 2.4",
+    "component": "YoutubePlayer.tsx & LofiWidget.tsx",
+    "key": "screen3-lofi-player",
+    "name": "Screen 3: Lofi Music Mini-Player (Trình phát nhạc YouTube)",
+    "screenId": "9fbcecf0849d449f996774aa8ca13078",
+    "htmlFile": "screen3-lofi-player.html",
+    "pngFile": "screen3-lofi-player.png",
+    "success": true
+  },
+  {
+    "task": "Task 2.5",
+    "component": "TodoDrawer.tsx & TodoItem.tsx",
+    "key": "screen4-todo-drawer",
+    "name": "Screen 4: Daily Reset Todo List Drawer",
+    "screenId": "b4862b9291aa4d518dd5b1ba9beaa843",
+    "htmlFile": "screen4-todo-drawer.html",
+    "pngFile": "screen4-todo-drawer.png",
+    "success": true
+  },
+  {
+    "task": "Task 2.6",
+    "component": "WallpaperModal.tsx & DimmerOverlay.tsx",
+    "key": "screen5-wallpaper-modal",
+    "name": "Screen 5: Wallpaper Selector Modal & Visual Dimmer",
+    "screenId": "3bfd5e02f09b4e52a9efaed399be07bf",
+    "htmlFile": "screen5-wallpaper-modal.html",
+    "pngFile": "screen5-wallpaper-modal.png",
+    "success": true
+  },
+  {
+    "task": "Task 2.7",
+    "component": "ZenModeOverlay.tsx & MinimalTimer.tsx",
+    "key": "screen6-zen-mode",
+    "name": "Screen 6: Zen Mode View & Responsive States",
+    "screenId": "1999f7eb248a4a328255aba5a3914101",
+    "htmlFile": "screen6-zen-mode.html",
+    "pngFile": "screen6-zen-mode.png",
+    "success": true
+  }
+]

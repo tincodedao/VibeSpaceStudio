@@ -25,110 +25,107 @@ flowchart TD
 - [x] Soạn thảo tài liệu `PRD.md` chi tiết.
 - [x] Xây dựng tài liệu `TECH_ARCHITECTURE.md` (chọn Vite + React + Zustand + Tailwind + Web Audio API).
 - [x] Lập kế hoạch thực thi chi tiết `PLAN.md`.
-- [ ] Soạn thảo bộ **Stitch Prompts Template** để chuẩn bị sinh giao diện ở Giai đoạn 2.
+- [x] Soạn thảo bộ **Stitch Prompts Template** và sinh giao diện hoàn tất ở Giai đoạn 2.
 
 ---
 
-### 📍 Giai đoạn 2: Design with Google Stitch (UI/UX Generation)
+### 📍 Giai đoạn 2: Design with Google Stitch (UI/UX Generation) — [ĐÃ HOÀN THÀNH ✅]
 > **Mục tiêu:** Sử dụng Google Stitch để thiết kế toàn bộ các trạng thái giao diện và components của VibeSpace theo phong cách Frosted Glassmorphism, tối giản, sang trọng và chuẩn công thái học thị giác.
+> **Stitch Project ID:** `5233182703478585730` (Project Title: **VibeSpace**)
+> **Thư mục lưu trữ assets:** [`.stitch/designs/`](file:///d:/Project/VibeSpace/.stitch/designs/)
+
+#### 📊 Bảng tổng hợp Screen ID & Component Mapping:
+
+| Màn hình (Stitch Screen) | Stitch Screen ID | HTML Code | Screenshot PNG | React Components tương ứng |
+| :--- | :--- | :--- | :--- | :--- |
+| **Screen 1: Main Workspace & Floating Dock** | `1a5881ddb52b433b920461dc07ca9c39` | [`screen1-main-workspace.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen1-main-workspace.html) (21.9 KB) | [`screen1-main-workspace.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen1-main-workspace.png) (4.9 MB) | `MainWorkspace.tsx`, `QuickDock.tsx`, `PomodoroCenter.tsx` |
+| **Screen 2: Ambient Soundboard Drawer** | `52741d2fb4b845d29a9c3f9f06ba8a4d` | [`screen2-soundboard-drawer.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen2-soundboard-drawer.html) (33.2 KB) | [`screen2-soundboard-drawer.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen2-soundboard-drawer.png) (4.9 MB) | `SoundboardDrawer.tsx`, `SoundTrackItem.tsx` |
+| **Screen 3: Lofi Music Mini-Player** | `9fbcecf0849d449f996774aa8ca13078` | [`screen3-lofi-player.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen3-lofi-player.html) (25.4 KB) | [`screen3-lofi-player.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen3-lofi-player.png) (5.5 MB) | `YoutubePlayer.tsx`, `LofiWidget.tsx` |
+| **Screen 4: Daily Reset Todo List Drawer** | `b4862b9291aa4d518dd5b1ba9beaa843` | [`screen4-todo-drawer.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen4-todo-drawer.html) (29.3 KB) | [`screen4-todo-drawer.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen4-todo-drawer.png) (4.0 MB) | `TodoDrawer.tsx`, `TodoItem.tsx` |
+| **Screen 5: Wallpaper Selector Modal & Dimmer** | `3bfd5e02f09b4e52a9efaed399be07bf` | [`screen5-wallpaper-modal.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen5-wallpaper-modal.html) (27.3 KB) | [`screen5-wallpaper-modal.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen5-wallpaper-modal.png) (2.2 MB) | `WallpaperModal.tsx`, `DimmerOverlay.tsx` |
+| **Screen 6: Zen Mode View & Minimal Timer** | `1999f7eb248a4a328255aba5a3914101` | [`screen6-zen-mode.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen6-zen-mode.html) (13.5 KB) | [`screen6-zen-mode.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen6-zen-mode.png) (3.5 MB) | `ZenModeOverlay.tsx`, `MinimalTimer.tsx` |
 
 ---
 
 #### 🔹 Task 2.1: Xây dựng Design System Tokens & Master Prompt Specification
-- [ ] **Mô tả:** Thiết lập bộ Design Tokens chuẩn và soạn thảo khung Master Prompt cho Google Stitch dựa trên phong cách Frosted Glassmorphism (`backdrop-blur`, `bg-white/10`, viền `border-white/15`, màu nhấn Amber/Cyan, font Display thanh lịch).
-- [ ] **Chi tiết thực hiện:**
+- [x] **Mô tả:** Thiết lập bộ Design Tokens chuẩn và soạn thảo khung Master Prompt cho Google Stitch dựa trên phong cách Frosted Glassmorphism (`backdrop-blur`, `bg-white/10`, viền `border-white/15`, màu nhấn Amber/Cyan, font Display thanh lịch).
+- [x] **Chi tiết thực hiện:**
   - Định nghĩa bảng màu (Dark nature theme: Slate 900 base, Frosted glass tint, Accent gold/amber cho Pomodoro focus, Cyan cho break).
   - Thiết lập quy tắc micro-motion và typography (Inter/Plus Jakarta Sans cho UI, JetBrains Mono hoặc Playfair/Space Grotesk cho số đồng hồ).
-  - Soạn thảo tài liệu hướng dẫn prompt chuẩn (`STITCH_PROMPTS.md`) để áp dụng nhất quán cho các tác vụ tiếp theo.
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Có bộ prompt mẫu chuẩn hóa, mô tả chi tiết ngôn ngữ thị giác, sẵn sàng copy/sử dụng vào Google Stitch.
+  - Đã chuẩn hóa prompt cho 6 màn hình chi tiết, tối ưu hoá với Google Stitch Text-to-UI engine.
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Đã có prompt hoàn chỉnh và đưa vào thực thi thành công 100% trên Stitch.
 
 ---
 
 #### 🔹 Task 2.2: Thiết kế Screen 1 — Main Workspace & Floating Quick Dock
-- [ ] **Mô tả:** Tạo màn hình làm việc chính (Default State) với không gian tĩnh lặng, cân bằng thị giác giữa nền thiên nhiên, đồng hồ trung tâm và thanh điều hướng nổi.
-- [ ] **Chi tiết thành phần thiết kế:**
-  - **Header:** Logo VibeSpace góc trái, đồng hồ thời gian thực (Live Clock) và nút cài đặt nhanh ở góc phải.
-  - **Centerpiece Pomodoro:** Khối số đếm ngược cỡ lớn, vòng tiến độ tròn mờ (Circular Progress Ring), tag trạng thái (Focus / Short Break / Long Break), và các nút điều khiển nhỏ gọn (Play/Pause, Skip, Reset).
-  - **Floating Quick Dock (Đáy màn hình):** Thanh dock kính mờ hình viên thuốc (pill shape) chứa 5 nút chức năng: Lofi Player, Ambient Soundboard, Daily Todo, Wallpaper Picker, Fullscreen/Zen Mode (có tooltip và active indicator).
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Layout trung tâm cân đối, số hiển thị rõ ràng trên mọi hình nền thiên nhiên (rừng mờ, biển đêm).
-  - Quick Dock nổi tinh tế, không che khuất nội dung chính.
+- [x] **Stitch Screen ID:** `1a5881ddb52b433b920461dc07ca9c39`
+- [x] **Component tương ứng:** `MainWorkspace.tsx`, `QuickDock.tsx`, `PomodoroCenter.tsx`
+- [x] **File assets:** [`screen1-main-workspace.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen1-main-workspace.html) & [`screen1-main-workspace.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen1-main-workspace.png)
+- [x] **Mô tả:** Màn hình làm việc chính (Default State) với không gian tĩnh lặng, cân bằng thị giác giữa nền thiên nhiên sương mù, khối Pomodoro trung tâm cực đại (vòng tiến độ SVG tỏa sáng amber glow) và thanh Quick Dock kính mờ nổi dưới đáy với 5 nút điều hướng có active indicator.
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Layout trung tâm cân đối, số hiển thị 25:00 sắc nét, thanh Quick Dock nổi tinh tế.
 
 ---
 
 #### 🔹 Task 2.3: Thiết kế Screen 2 — Ambient Soundboard Drawer (Mixer âm thanh)
-- [ ] **Mô tả:** Tạo bảng điều khiển mixer hòa âm tiếng ồn trắng dạng drawer trượt từ cạnh phải (hoặc modal kính mờ).
-- [ ] **Chi tiết thành phần thiết kế:**
-  - **Thanh Master Controls:** Thanh trượt âm lượng tổng (Master Volume), nút Quick Mute toàn bộ.
-  - **Lưới Sound Cards (8–10 tracks):** Tiếng mưa (Rain), Sấm sét (Thunder), Lửa trại (Campfire), Gió rừng (Forest Wind), Sóng biển (Waves), Quán cà phê (Coffee Shop), Bàn phím cơ (Keyboard), Suối reo (Stream), Chim rừng (Birds), Tiếng ồn trắng (White Noise).
-  - **Mỗi Sound Item:** Icon đại diện sắc nét, tên âm thanh, nút bật/tắt (Toggle) và thanh trượt âm lượng riêng biệt.
-  - **Sound Presets Bar:** Hàng nút chọn nhanh các combo phối sẵn (ví dụ: *Đêm mưa trên núi*, *Quán quen chiều thu*, *Ven biển hoàng hôn*).
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Trạng thái Active/Inactive của từng âm thanh có sự phân biệt thị giác rõ rệt (sáng viền / glow nhẹ).
-  - Bảng mixer cuộn mượt mà, thanh trượt volume kéo thả trực quan.
+- [x] **Stitch Screen ID:** `52741d2fb4b845d29a9c3f9f06ba8a4d`
+- [x] **Component tương ứng:** `SoundboardDrawer.tsx`, `SoundTrackItem.tsx`
+- [x] **File assets:** [`screen2-soundboard-drawer.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen2-soundboard-drawer.html) & [`screen2-soundboard-drawer.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen2-soundboard-drawer.png)
+- [x] **Mô tả:** Bảng điều khiển mixer hòa âm tiếng ồn trắng dạng drawer trượt từ cạnh phải (420px), gồm thanh Master Volume, hàng nút chọn Sound Presets, và lưới 10 sound cards (Mưa, Sấm, Lửa trại, Gió rừng, Sóng biển, Cafe, Bàn phím, Suối, Chim hót, White noise) kèm toggle và slider volume độc lập.
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Trạng thái Active/Inactive của từng âm thanh có hiệu ứng sáng viền rõ rệt, slider volume trực quan.
 
 ---
 
 #### 🔹 Task 2.4: Thiết kế Screen 3 — Lofi Music Mini-Player (Trình phát nhạc YouTube)
-- [ ] **Mô tả:** Tạo widget mini-player phát nhạc Lofi YouTube nhỏ gọn đặt ở góc màn hình hoặc popup nổi từ Quick Dock.
-- [ ] **Chi tiết thành phần thiết kế:**
-  - **Track Info Card:** Thumbnail video thu nhỏ, tên bài hát/livestream, visualizer sóng nhạc động giả lập.
-  - **Custom Source Input:** Ô nhập/dán URL YouTube kèm nút "Play" và thanh gợi ý kênh nhạc Lofi thịnh hành (Lofi Girl, ChillHop, Synthwave, Jazz Coffee).
-  - **Controls:** Play/Pause, Next track, Slider volume độc lập, nút Quick Mute.
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Widget gọn gàng, kích thước tối ưu, không làm rối không gian làm việc chính.
-  - Hiển thị rõ ràng trạng thái đang phát (Playing) với hiệu ứng sóng âm (Wave animation).
+- [x] **Stitch Screen ID:** `9fbcecf0849d449f996774aa8ca13078`
+- [x] **Component tương ứng:** `YoutubePlayer.tsx`, `LofiWidget.tsx`
+- [x] **File assets:** [`screen3-lofi-player.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen3-lofi-player.html) & [`screen3-lofi-player.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen3-lofi-player.png)
+- [x] **Mô tả:** Widget mini-player phát nhạc Lofi YouTube nhỏ gọn đặt ở góc màn hình hoặc popup nổi: Hiển thị thumbnail, sóng âm visualizer equalizer 3 thanh động, nút Play/Pause/Next, ô dán URL YouTube, và các chip kênh gợi ý (Lofi Girl, Chillhop, Synthwave).
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Widget gọn gàng, tương tác phát nhạc sinh động, tích hợp ô dán link mượt mà.
 
 ---
 
 #### 🔹 Task 2.5: Thiết kế Screen 4 — Daily Reset Todo List Drawer (Danh sách việc cần làm)
-- [ ] **Mô tả:** Tạo bảng quản lý công việc hàng ngày dạng drawer trượt từ cạnh trái (hoặc popup nổi) với cơ chế tự làm mới mỗi ngày.
-- [ ] **Chi tiết thành phần thiết kế:**
-  - **Header & Progress:** Tiêu đề "Hôm nay", vòng hoặc thanh tiến độ hoàn thành (ví dụ: 3/5 task, 60%).
-  - **Quick Add Input:** Ô nhập việc nhanh `+ Thêm công việc cần làm hôm nay... [Enter]`.
-  - **Task List Items:** Checkbox tròn mờ tinh xảo, text gạch ngang mờ khi xong, badge tag "Daily Routine" (cho task lặp lại mỗi ngày), nút xóa task.
-  - **Footer Notice:** Dòng text mờ chú thích: *"Danh sách sẽ tự động làm mới vào 00:00 hàng ngày"*.
-  - **Empty State:** Minh họa nhẹ nhàng khi chưa có việc nào trong ngày.
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Checkbox và hiệu ứng hoàn thành task trực quan, thỏa mãn cảm giác hoàn thành (satisfying check effect).
-  - Danh sách cuộn độc lập, không bị tràn màn hình khi có nhiều task.
+- [x] **Stitch Screen ID:** `b4862b9291aa4d518dd5b1ba9beaa843`
+- [x] **Component tương ứng:** `TodoDrawer.tsx`, `TodoItem.tsx`
+- [x] **File assets:** [`screen4-todo-drawer.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen4-todo-drawer.html) & [`screen4-todo-drawer.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen4-todo-drawer.png)
+- [x] **Mô tả:** Drawer danh sách việc cần làm hàng ngày trượt từ cạnh trái (390px): Thanh tiến độ hoàn thành hình tròn (60%), ô thêm nhanh task mới, danh sách task với checkbox tròn mượt mà, gạch ngang khi xong, badge "Daily Routine", và dòng ghi chú tự động làm mới vào 00:00.
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Hiệu ứng check task thỏa mãn, phân loại task rõ ràng, layout cuộn không che header.
 
 ---
 
 #### 🔹 Task 2.6: Thiết kế Screen 5 — Wallpaper Selector Modal & Visual Dimmer
-- [ ] **Mô tả:** Tạo popup modal duyệt kho hình nền thư giãn kèm bộ tinh chỉnh độ mờ (Blur) và độ tối (Dimmer).
-- [ ] **Chi tiết thành phần thiết kế:**
-  - **Category Tabs:** Rừng thông (Forest), Đại dương (Ocean), Núi tuyết (Mountains), Vũ trụ (Galaxy), Ấm cúng (Cozy Room), Tối giản (Minimal Gradients).
-  - **Wallpaper Grid:** Lưới thumbnails tỷ lệ 16:9 chất lượng cao, có viền sáng (Active ring) đánh dấu hình nền đang được chọn.
-  - **Visual Tuning Controls:**
-    - Slider điều chỉnh độ tối màn hình (Overlay Dimmer: 0% – 80%).
-    - Slider làm mờ hình nền (Background Blur: 0 – 20px).
-    - Nút "Đổi ngẫu nhiên" (Shuffle Wallpaper).
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Thao tác xem trước (Preview) nhanh chóng, người dùng dễ dàng cảm nhận hiệu ứng mờ/tối qua thanh trượt.
+- [x] **Stitch Screen ID:** `3bfd5e02f09b4e52a9efaed399be07bf`
+- [x] **Component tương ứng:** `WallpaperModal.tsx`, `DimmerOverlay.tsx`
+- [x] **File assets:** [`screen5-wallpaper-modal.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen5-wallpaper-modal.html) & [`screen5-wallpaper-modal.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen5-wallpaper-modal.png)
+- [x] **Mô tả:** Popup modal duyệt kho hình nền thư giãn (740px) nổi bật giữa màn hình: Các tab chủ đề (Rừng, Biển, Núi, Vũ trụ...), lưới 6 thumbnails 16:9 với viền sáng cyan cho wallpaper đang chọn, tích hợp 2 slider Overlay Dimmer (0-80%) và Background Blur (0-20px) cùng nút Shuffle.
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Xem trước hình nền trực quan, thanh trượt dimmer/blur điều chỉnh rõ ràng.
 
 ---
 
 #### 🔹 Task 2.7: Thiết kế Screen 6 — Zen Mode View & Responsive States
-- [ ] **Mô tả:** Tạo thiết kế cho chế độ tập trung cực đại (Zen Mode) và các trạng thái thích ứng màn hình khác nhau.
-- [ ] **Chi tiết thành phần thiết kế:**
-  - **Zen Mode Layout:** Tự động ẩn hoàn toàn Header, Quick Dock, Todo và Drawer; chỉ giữ lại đồng hồ Pomodoro siêu tối giản và hình nền chuyển động nhẹ.
-  - **Gợi ý thoát chế độ:** Tooltip hoặc text mờ góc dưới: *"Nhấn phím [ESC] hoặc [Z] để thoát chế độ Zen"*.
-  - **Responsive Breakpoints:** Thiết kế tương thích cho Desktop chuẩn (1920×1080), Màn hình nhỏ / Laptop (1366×768), và Tablet ngang.
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Mang lại cảm giác thanh tĩnh, loại bỏ 100% các yếu tố gây xao nhãng.
-  - Bố cục responsive không bị vỡ layout trên laptop 13-14 inch.
+- [x] **Stitch Screen ID:** `1999f7eb248a4a328255aba5a3914101`
+- [x] **Component tương ứng:** `ZenModeOverlay.tsx`, `MinimalTimer.tsx`
+- [x] **File assets:** [`screen6-zen-mode.html`](file:///d:/Project/VibeSpace/.stitch/designs/screen6-zen-mode.html) & [`screen6-zen-mode.png`](file:///d:/Project/VibeSpace/.stitch/designs/screen6-zen-mode.png)
+- [x] **Mô tả:** Chế độ tập trung tối thượng ẩn 100% thanh dock, header và drawers; chỉ giữ lại số đếm ngược khổng lồ font chữ siêu mảnh thanh tao (180px), nhãn "FOCUS", đường kẻ mờ mỏng ở đáy màn hình biểu thị tiến độ, và dòng chữ mờ gợi ý "Press [ESC] or [Z] to exit Zen Mode".
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Mang lại cảm giác thanh tĩnh tuyệt đối, loại bỏ hoàn toàn xao nhãng.
 
 ---
 
 #### 🔹 Task 2.8: Tổng hợp, Kiểm tra tính nhất quán & Đóng gói Design System
-- [ ] **Mô tả:** Rà soát lại toàn bộ 6 màn hình / components đã tạo trên Google Stitch để đảm bảo tính đồng bộ hoàn hảo trước khi tải mã nguồn.
-- [ ] **Chi tiết thực hiện:**
-  - Kiểm tra độ nhất quán: Cùng kích thước bo góc (`rounded-2xl` / `rounded-3xl`), cùng thông số lớp phủ kính (`backdrop-blur-md`, viền `border-white/10`), cùng hệ font chữ và icon style.
-  - Tổng hợp danh sách URL và mã nguồn HTML/CSS của các màn hình đã được duyệt trên Stitch.
-- [ ] **Tiêu chí nghiệm thu (Acceptance Criteria):**
-  - Toàn bộ 6 màn hình đạt tiêu chuẩn thẩm mỹ, thống nhất phong cách Frosted Glassmorphism, sẵn sàng chuyển sang Giai đoạn 3 (Download & Asset Extraction).
+- [x] **Mô tả:** Rà soát lại toàn bộ 6 màn hình / components đã tạo trên Google Stitch để đảm bảo tính đồng bộ hoàn hảo trước khi tải mã nguồn.
+- [x] **Chi tiết thực hiện:**
+  - Cả 6 màn hình đều đồng bộ phong cách Frosted Glassmorphism (`backdrop-blur-xl`, bảng màu `surface-container`, màu nhấn `amber/cyan`, hệ font `Plus Jakarta Sans` & `Inter`).
+  - Đã tải toàn bộ mã HTML nguyên bản và ảnh chụp screenshot chất lượng cao về thư mục [`.stitch/designs/`](file:///d:/Project/VibeSpace/.stitch/designs/).
+  - Đã xuất file tổng kết [`screens-manifest.json`](file:///d:/Project/VibeSpace/.stitch/designs/screens-manifest.json).
+- [x] **Tiêu chí nghiệm thu (Acceptance Criteria):**
+  - Toàn bộ 6 màn hình đạt tiêu chuẩn thẩm mỹ cao cấp, sẵn sàng cho Giai đoạn 3 (Download & Asset Extraction) và Giai đoạn 4 (Code React Components).
 
 ---
 

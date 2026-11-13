@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VibeSpace — Ambient Focus Workspace</title>
+<!-- Google Fonts: Inter & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS Play CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration Script -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#ffb95f",
+            "surface-container-low": "#141d1a",
+            "surface-container-high": "#232c28",
+            "background": "#0c1512",
+            "surface-dim": "#0c1512",
+            "surface-variant": "#2d3733",
+            "primary-fixed": "#ffddb8",
+            "on-tertiary-container": "#504300",
+            "primary": "#ffc174",
+            "on-secondary": "#003824",
+            "surface": "#0c1512",
+            "on-tertiary-fixed-variant": "#534600",
+            "on-secondary-container": "#00311f",
+            "surface-container-highest": "#2d3733",
+            "on-background": "#dbe5df",
+            "on-surface": "#dbe5df",
+            "inverse-primary": "#855300",
+            "on-primary-fixed-variant": "#653e00",
+            "surface-container": "#18211e",
+            "secondary": "#4edea3",
+            "outline-variant": "#534434",
+            "surface-tint": "#ffb95f",
+            "on-error": "#690005",
+            "tertiary": "#e2cc73",
+            "error-container": "#93000a",
+            "on-secondary-fixed-variant": "#005236",
+            "on-tertiary-fixed": "#221b00",
+            "on-primary": "#472a00",
+            "on-primary-container": "#613b00",
+            "surface-container-lowest": "#07100d",
+            "secondary-fixed-dim": "#4edea3",
+            "on-secondary-fixed": "#002113",
+            "inverse-surface": "#dbe5df",
+            "error": "#ffb4ab",
+            "secondary-container": "#00a572",
+            "on-surface-variant": "#d8c3ad",
+            "primary-container": "#f59e0b",
+            "on-error-container": "#ffdad6",
+            "surface-bright": "#323b37",
+            "on-tertiary": "#3a3000",
+            "on-primary-fixed": "#2a1700",
+            "tertiary-fixed-dim": "#dcc66e",
+            "tertiary-fixed": "#f9e287",
+            "outline": "#a08e7a",
+            "inverse-on-surface": "#29322f",
+            "tertiary-container": "#c5b15b",
+            "secondary-fixed": "#6ffbbe"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "margin": "2.5rem",
+            "space-xl": "2.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "tabular-clock": ["Inter"],
+            "display-timer-mobile": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-timer": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "tabular-clock": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0.05em", "fontWeight": "500" }],
+            "display-timer-mobile": ["3.5rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-sm": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "0em", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-timer": ["5rem", { "lineHeight": "5rem", "letterSpacing": "-0.03em", "fontWeight": "300" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    /* Ambient Glow Radiance */
+    .amber-bloom {
+      filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.45));
+    }
+    .amber-glow-box {
+      box-shadow: 0 0 24px -2px rgba(245, 158, 11, 0.35);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(245, 158, 11, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden select-none h-screen w-screen relative">
+<!-- Ambient Full-screen Wallpaper Canvas with Misted Vignette -->
+<div class="fixed inset-0 w-full h-full -z-20 overflow-hidden pointer-events-none">
+<img alt="Atmospheric study room at dusk in rain" class="w-full h-full object-cover scale-105 transform motion-safe:transition-transform motion-safe:duration-1000 filter brightness-[0.72] contrast-[1.08] saturate-[1.1]" src="https://lh3.googleusercontent.com/aida/ALJJyrBn6mNrHG2c-FjV39G8Y0ibGyDBkAP26a6OjhAc_LBEJDTQ6Wwm664VcaYzle6yEGlwFfjJ5sKWIla1amr5jdAG3J70fblx8SOyfjTruBjqxP1SKnib5DeGa7nQBN8l9JsLdAWPjl8fWoyKo78EjttvJ0Efrm36M3IFSTUYa7edAejI0ZHBMEJ5NC9-QJiZZ194oeyqyaHeJSdtZeeiNfNbxZhvk-fhSLhEBuRsdjg5PB_S64Rj3zlR2S0"/>
+<!-- Deep Organic Tint & Gradient Vignette -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/60 to-surface-container-lowest/40 backdrop-blur-[1.5px]"></div>
+<div class="absolute inset-0 bg-radial-gradient from-transparent via-surface-container-lowest/30 to-surface-container-lowest/90"></div>
+</div>
+<!-- Shared Component: TopNavBar -->
+<header class="w-full fixed top-0 left-0 z-40 bg-surface-container/40 dark:bg-surface-container/40 backdrop-blur-md border-b border-outline-variant/10 dark:border-outline-variant/10 shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<!-- Brand Logo / Identity -->
+<div class="flex items-center gap-4">
+<a class="font-headline-md text-headline-md font-semibold tracking-tight text-on-surface dark:text-on-surface flex items-center gap-2 group" href="#">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container amber-bloom group-hover:scale-125 transition-transform duration-200"></span>
+<span>VibeSpace</span>
+</a>
+<!-- Status Tag / Session Mode -->
+<div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-highest/40 border border-white/5 text-primary text-label-sm font-label-sm backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span>Deep Work Mode</span>
+</div>
+</div>
+<!-- Clock Readout (Tabular) -->
+<div class="hidden md:flex items-center gap-2 text-on-surface-variant font-tabular-clock text-tabular-clock">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span class="text-on-surface font-medium">06:45 PM</span>
+<span class="text-outline-variant/60">·</span>
+<span class="text-on-surface-variant">Wednesday, Nov 13</span>
+</div>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-2">
+<!-- Audio Controls Mini Pill -->
+<button class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-bright/20 hover:bg-surface-bright/40 text-primary hover:text-primary transition-colors duration-200 scale-95 active:scale-90" title="Audio controls">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span class="text-label-sm font-label-sm hidden sm:inline text-on-surface">Ambient Sounds</span>
+</button>
+<!-- Fullscreen Button -->
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 scale-95 active:scale-90" title="Toggle Fullscreen">
+<span class="material-symbols-outlined text-[20px]">fullscreen</span>
+</button>
+<!-- Settings Button -->
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-bright/20 transition-colors duration-200 scale-95 active:scale-90" title="Settings">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Left-Side Drawer: Daily Todo List Task Management Panel -->
+<aside class="fixed top-0 left-0 h-full w-[390px] z-30 bg-surface-container-lowest/85 backdrop-blur-2xl border-r border-white/10 shadow-2xl flex flex-col pt-20 pb-8 px-6 transition-all duration-300" id="todo-drawer">
+<!-- Drawer Header -->
+<div class="flex flex-col gap-4 pb-4 border-b border-white/5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 border border-primary/25 text-primary text-[10px] font-label-sm tracking-wider uppercase font-semibold">FOCUS &amp; PRODUCTIVITY</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary p-1 rounded-full hover:bg-surface-bright/20 transition-colors" title="Collapse Drawer">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+</div>
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Today's Tasks</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 mt-0.5">Wednesday, Nov 13</p>
+</div>
+<!-- Mini Progress Radial Ring -->
+<div class="relative flex items-center justify-center w-12 h-12">
+<svg class="w-12 h-12 transform -rotate-90" viewbox="0 0 48 48">
+<circle class="text-white/10" cx="24" cy="24" fill="none" r="19" stroke="currentColor" stroke-width="3.5"></circle>
+<circle cx="24" cy="24" fill="none" r="19" stroke="url(#todo-progress-grad)" stroke-dasharray="119.38" stroke-dashoffset="47.75" stroke-linecap="round" stroke-width="3.5"></circle>
+<defs>
+<lineargradient id="todo-progress-grad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ffc174"></stop>
+<stop offset="100%" stop-color="#4edea3"></stop>
+</lineargradient>
+</defs>
+</svg>
+<span class="absolute font-label-sm text-[11px] font-semibold text-primary">3/5</span>
+</div>
+</div>
+<!-- Completion micro-badge & inspiring motto -->
+<div class="flex items-center justify-between px-3 py-2 rounded-xl bg-surface-container-high/40 border border-white/5">
+<div class="flex items-center gap-1.5 text-secondary text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-medium text-on-surface">60% completed</span>
+</div>
+<span class="text-body-sm text-[11px] text-on-surface-variant">2 focus tasks remaining</span>
+</div>
+<!-- Filter Tabs / Pills -->
+<div class="flex items-center gap-1.5 p-1 bg-surface-container-lowest/60 rounded-full border border-white/5">
+<button class="flex-1 py-1 text-center rounded-full bg-primary/20 border border-primary/30 text-primary font-label-sm text-label-sm transition-all shadow-sm">
+          All (5)
+        </button>
+<button class="flex-1 py-1 text-center rounded-full text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors">
+          Active (3)
+        </button>
+<button class="flex-1 py-1 text-center rounded-full text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors">
+          Done (2)
+        </button>
+</div>
+</div>
+<!-- Quick Add Task Input -->
+<div class="pt-4 pb-3">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-primary text-[18px]">add_task</span>
+<input class="w-full pl-10 pr-16 py-2.5 bg-black/30 border border-white/10 rounded-xl text-on-surface text-body-sm placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all shadow-inner" placeholder="Add a focus task for today..." type="text"/>
+<div class="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<span class="px-1.5 py-0.5 rounded border border-white/10 text-[10px] text-on-surface-variant/70 bg-white/5 font-mono">↵ Enter</span>
+</div>
+</div>
+</div>
+<!-- Task Items List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar pr-1 space-y-2.5 my-2">
+<!-- Item 1 (Pending Focus Task - High Priority) -->
+<div class="group relative flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-high/35 border border-primary/30 hover:border-primary/60 transition-all hover:bg-surface-container-high/50 hover:shadow-lg">
+<button class="mt-0.5 w-5 h-5 rounded-full border-2 border-primary/60 group-hover:border-primary flex items-center justify-center transition-colors">
+<span class="w-2 h-2 rounded-full bg-transparent group-hover:bg-primary/20 transition-colors"></span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container amber-bloom"></span>
+<span class="font-body-md text-body-sm font-medium text-on-surface leading-snug">Deep work session 1 (Architecture)</span>
+</div>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-primary/15 text-primary border border-primary/30 font-medium">High Priority</span>
+<span class="flex items-center gap-1 text-[11px] font-tabular-clock text-on-surface-variant">
+<span class="material-symbols-outlined text-[13px]">timer</span> 50m
+            </span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-white/5" title="Delete">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 2 (Completed) -->
+<div class="group relative flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-high/20 border border-white/5 transition-all opacity-70 hover:opacity-100 hover:bg-surface-container-high/30">
+<button class="mt-0.5 w-5 h-5 rounded-full bg-secondary/20 border-2 border-secondary flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-sm text-on-surface-variant line-through leading-snug">Review project requirements &amp; specs</p>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="text-[11px] font-tabular-clock text-secondary/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">done_all</span> 10:42 AM
+            </span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-white/5" title="Delete">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 3 (Pending - Core Feature) -->
+<div class="group relative flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-high/35 border border-white/5 hover:border-white/15 transition-all hover:bg-surface-container-high/50">
+<button class="mt-0.5 w-5 h-5 rounded-full border-2 border-outline-variant hover:border-primary flex items-center justify-center transition-colors">
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-sm font-medium text-on-surface leading-snug">Write Pomodoro timer Zustand store</p>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-surface-variant/70 text-on-surface-variant border border-white/10">Core Feature</span>
+<span class="flex items-center gap-1 text-[11px] font-tabular-clock text-on-surface-variant">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 25m
+            </span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-white/5" title="Delete">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 4 (Daily Habit / Streak) -->
+<div class="group relative flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-high/35 border border-white/5 hover:border-white/15 transition-all hover:bg-surface-container-high/50">
+<button class="mt-0.5 w-5 h-5 rounded-full border-2 border-outline-variant hover:border-secondary flex items-center justify-center transition-colors">
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-sm font-medium text-on-surface leading-snug">Stretch &amp; drink water every break</p>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-label-sm bg-secondary/15 text-secondary border border-secondary/30 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Daily Routine
+            </span>
+<span class="px-1.5 py-0.5 rounded-full text-[11px] font-label-sm bg-primary/10 text-primary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">local_fire_department</span> 5 streak
+            </span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5" title="Edit">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+</div>
+<!-- Item 5 (Completed) -->
+<div class="group relative flex items-start gap-3 p-3.5 rounded-2xl bg-surface-container-high/20 border border-white/5 transition-all opacity-70 hover:opacity-100 hover:bg-surface-container-high/30">
+<button class="mt-0.5 w-5 h-5 rounded-full bg-secondary/20 border-2 border-secondary flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[15px] font-bold">check</span>
+</button>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-sm text-on-surface-variant line-through leading-snug">Set up GitHub repository VibeSpaceStudio</p>
+<div class="flex items-center gap-2 mt-1.5">
+<span class="text-[11px] font-tabular-clock text-secondary/80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">done_all</span> 09:15 AM
+            </span>
+</div>
+</div>
+<div class="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-white/5" title="Delete">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="pt-4 border-t border-white/10 space-y-2">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>2 tasks remaining</span>
+<span class="text-primary font-medium">Est. 1h 40m</span>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] text-on-surface-variant/60 font-body-sm pt-1">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+<span>Tasks auto-reset at midnight for a fresh daily start.</span>
+</div>
+</div>
+</aside>
+<!-- Center Ambient Focus Workspace Stage -->
+<main class="relative h-screen w-full pl-[390px] flex flex-col items-center justify-center pb-24 z-10">
+<!-- Central Focus Pod & Pomodoro Timer -->
+<div class="relative flex flex-col items-center">
+<!-- Ambient Glow Halo Backdrop -->
+<div class="absolute -inset-10 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Concentric Circular Focus Timer -->
+<div class="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center">
+<!-- SVG Progress Rings -->
+<svg class="absolute inset-0 w-full h-full transform -rotate-90 pointer-events-none" viewbox="0 0 320 320">
+<!-- Background Track -->
+<circle cx="160" cy="160" fill="none" r="142" stroke="rgba(255, 255, 255, 0.06)" stroke-width="5"></circle>
+<!-- Glowing Active Progress Ring -->
+<circle class="amber-bloom transition-all duration-1000" cx="160" cy="160" fill="none" r="142" stroke="url(#timer-glow-gradient)" stroke-dasharray="892.2" stroke-dashoffset="267.66" stroke-linecap="round" stroke-width="7"></circle>
+<defs>
+<lineargradient id="timer-glow-gradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#f59e0b"></stop>
+<stop offset="60%" stop-color="#ffc174"></stop>
+<stop offset="100%" stop-color="#fde68a"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Interior Readout & Status Info -->
+<div class="relative flex flex-col items-center text-center z-10 px-6">
+<!-- Mode Pill -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high/60 border border-white/10 text-primary-fixed font-label-sm text-label-sm uppercase tracking-wider backdrop-blur-md mb-2 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+<span>Pomodoro Cycle 1 of 4</span>
+</div>
+<!-- Tabular Timer Clock Display -->
+<div class="font-display-timer text-display-timer tracking-tight text-on-surface font-light select-none tabular-nums drop-shadow-md">
+            25:00
+          </div>
+<!-- Session Category Info -->
+<p class="font-body-md text-body-md text-on-surface-variant font-medium mt-1">
+            Focus: Deep work session 1
+          </p>
+<!-- Interactive Action Buttons -->
+<div class="flex items-center gap-3 mt-6">
+<!-- Start / Pause Main Action -->
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-primary text-on-primary font-headline-sm text-headline-sm font-semibold hover:shadow-lg hover:shadow-primary-container/30 scale-95 hover:scale-100 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined text-[20px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>Start Focus</span>
+</button>
+<!-- Reset / Skip Glass Pill -->
+<button class="p-2.5 rounded-full bg-white/5 border border-white/10 text-on-surface hover:text-primary hover:bg-white/10 backdrop-blur-md transition-all scale-95 active:scale-90" title="Skip Session">
+<span class="material-symbols-outlined text-[20px]">skip_next</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Now Playing Ambient Track Pill -->
+<div class="mt-8 flex items-center gap-3 px-5 py-2.5 rounded-full bg-surface-container-high/60 border border-white/10 backdrop-blur-xl shadow-xl hover:border-primary/30 transition-all duration-300">
+<div class="flex items-center gap-1 text-primary">
+<span class="w-1 h-3.5 bg-primary rounded-full animate-pulse"></span>
+<span class="w-1 h-5 bg-primary-container rounded-full animate-pulse delay-75"></span>
+<span class="w-1 h-2.5 bg-secondary rounded-full animate-pulse delay-150"></span>
+</div>
+<div class="flex flex-col text-left">
+<div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+<span>Now Playing</span>
+<span class="text-outline-variant/60">·</span>
+<span class="text-secondary font-medium">Lofi Beats</span>
+</div>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Rainy Night in Kyoto — Lofi Sleep</span>
+</div>
+<button class="ml-2 text-on-surface-variant hover:text-primary transition-colors p-1" title="Pause Track">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Shared Component: BottomNavBar (Floating Dock) -->
+<!-- Active navigation is Daily Todo (mapped to current view with active badge) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5 px-4 py-1.5 bg-surface-container-high/65 dark:bg-surface-container-high/65 backdrop-blur-2xl border border-outline-variant/15 dark:border-outline-variant/15 rounded-full shadow-2xl shadow-surface-container-lowest/80">
+<!-- Tab 1: Lofi Player -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90" href="#" title="Lofi Player">
+<span class="material-symbols-outlined text-[20px]" data-icon="radio">radio</span>
+<span class="font-label-sm text-label-sm sr-only">Lofi Player</span>
+</a>
+<!-- Tab 2: Soundboard -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90" href="#" title="Soundboard">
+<span class="material-symbols-outlined text-[20px]" data-icon="graphic_eq">graphic_eq</span>
+<span class="font-label-sm text-label-sm sr-only">Soundboard</span>
+</a>
+<!-- Tab 3: Daily Todo (ACTIVE: styling executed directly from style_active_navigation) -->
+<a class="relative text-primary dark:text-primary p-3 rounded-full flex flex-col items-center justify-center after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:absolute after:bottom-1 hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90" href="#" title="Daily Todo">
+<div class="relative">
+<span class="material-symbols-outlined text-[20px]" data-icon="checklist">checklist</span>
+<!-- Amber Active Tasks Badge '3' -->
+<span class="absolute -top-1.5 -right-2 px-1 min-w-[14px] h-[14px] rounded-full bg-primary-container text-on-primary-container font-mono text-[9px] font-bold flex items-center justify-center shadow-sm">3</span>
+</div>
+<span class="font-label-sm text-label-sm sr-only">Daily Todo</span>
+</a>
+<!-- Tab 4: Wallpapers -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90" href="#" title="Wallpapers">
+<span class="material-symbols-outlined text-[20px]" data-icon="wallpaper">wallpaper</span>
+<span class="font-label-sm text-label-sm sr-only">Wallpapers</span>
+</a>
+<!-- Tab 5: Zen Mode -->
+<a class="text-on-surface-variant dark:text-on-surface-variant p-3 rounded-full flex flex-col items-center justify-center hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container-highest/40 transition-all duration-200 active:scale-90" href="#" title="Zen Mode">
+<span class="material-symbols-outlined text-[20px]" data-icon="self_improvement">self_improvement</span>
+<span class="font-label-sm text-label-sm sr-only">Zen Mode</span>
+</a>
+</nav>
+<!-- Lightweight Inline JS for Interactive Toggle Behavior -->
+<script>
+    // Toggle completion on custom checkboxes
+    document.querySelectorAll('#todo-drawer button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        // Micro feedback click effect
+        button.classList.add('scale-90');
+        setTimeout(() => button.classList.remove('scale-90'), 150);
+      });
+    });
+  </script>
+</body></html>
